@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>جزوه 09 · BLB-LLB-LC-CHLITE · ۱۰ عبارت جدید</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0A0818;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #F0EEFC;
+            padding: 2rem 1rem;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header {
+            border-bottom: 2px solid #A87CFF;
+            padding-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .doc-number {
+            font-size: 0.7rem;
+            color: #FFD966;
+            background: rgba(255,217,102,0.1);
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 2rem;
+        }
+        .title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFF, #A87CFF);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-top: 0.5rem;
+        }
+        .sub {
+            font-size: 0.8rem;
+            color: #B0ABD4;
+            margin-top: 0.3rem;
+        }
+
+        .timer-card {
+            background: #16142E;
+            border: 1px solid #2A2748;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .timer-display {
+            font-family: monospace;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #FFD966;
+        }
+        .timer-controls {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .timer-input {
+            background: #0A0818;
+            border: 1px solid #2A2748;
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 1rem;
+            width: 70px;
+            text-align: center;
+        }
+        .timer-btn {
+            background: #A87CFF;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 1.5rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+            color: #0A0818;
+            font-weight: 600;
+        }
+        .timer-outline {
+            background: transparent;
+            border: 1px solid #A87CFF;
+            color: #A87CFF;
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            background: #16142E;
+            padding: 0.6rem 1rem;
+            border-radius: 3rem;
+        }
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: #B0ABD4;
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .nav-btn.active {
+            background: #A87CFF;
+            color: #0A0818;
+            font-weight: 700;
+        }
+
+        .step-card {
+            background: #16142E;
+            border: 1px solid #2A2748;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .step-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .phrases-row {
+            margin: 0.8rem 0 1.2rem 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #2A2748;
+        }
+        .phrase-badge {
+            background: rgba(168,124,255,0.2);
+            padding: 0.3rem 1rem;
+            border-radius: 2rem;
+            display: inline-block;
+            margin-left: 0.8rem;
+            margin-bottom: 0.4rem;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .teacher-full {
+            background: rgba(168,124,255,0.08);
+            border-right: 4px solid #A87CFF;
+            padding: 1.2rem;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .teacher-title {
+            font-size: 0.7rem;
+            color: #A87CFF;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        .teacher-text {
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        .example-live {
+            background: rgba(255,217,102,0.08);
+            padding: 0.8rem;
+            border-radius: 0.8rem;
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            border-left: 3px solid #FFD966;
+        }
+
+        .section {
+            margin-top: 1.8rem;
+        }
+        .section-header {
+            border-bottom: 1px solid #2A2748;
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: baseline;
+        }
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .section-desc {
+            font-size: 0.7rem;
+            color: #FFD966;
+            margin-bottom: 0.8rem;
+            margin-right: 1rem;
+        }
+        .q-item {
+            background: rgba(255,255,255,0.02);
+            padding: 0.9rem;
+            border-radius: 1rem;
+            margin-bottom: 0.7rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .q-item:hover {
+            border-color: #A87CFF;
+            background: rgba(168,124,255,0.05);
+        }
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.4rem;
+        }
+        .q-num {
+            font-size: 0.65rem;
+            color: #A87CFF;
+        }
+        .q-badge {
+            font-size: 0.6rem;
+            background: rgba(168,124,255,0.2);
+            padding: 0.2rem 0.6rem;
+            border-radius: 1rem;
+        }
+        .q-text {
+            font-size: 0.85rem;
+            direction: ltr;
+            text-align: left;
+            font-family: monospace;
+            margin: 0.4rem 0;
+        }
+        .audio-icon {
+            background: none;
+            border: none;
+            color: #B0ABD4;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .sample-box {
+            font-size: 0.7rem;
+            color: #5CD97A;
+            margin-top: 0.5rem;
+            padding-top: 0.4rem;
+            border-top: 1px dashed #2A2748;
+            display: none;
+        }
+        .q-item.selected .sample-box {
+            display: block;
+        }
+
+        .recorder-panel {
+            background: #16142E;
+            border: 1px solid #2A2748;
+            border-radius: 1.5rem;
+            padding: 1.2rem;
+            position: sticky;
+            bottom: 0.5rem;
+            backdrop-filter: blur(12px);
+        }
+        .selected-info {
+            font-size: 0.75rem;
+            color: #FFD966;
+            margin-bottom: 0.8rem;
+        }
+        .button-group {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
+        .btn {
+            background: #A87CFF;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #0A0818;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #A87CFF;
+            color: #A87CFF;
+        }
+        .status-text {
+            font-size: 0.65rem;
+            color: #B0ABD4;
+        }
+        audio {
+            width: 100%;
+            margin-top: 0.5rem;
+            border-radius: 1rem;
+        }
+        .blur-mode .q-text {
+            filter: blur(5px);
+            user-select: none;
+        }
+        .footer-note {
+            text-align: center;
+            font-size: 0.6rem;
+            color: #B0ABD4;
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid #2A2748;
+        }
+        @media (max-width: 650px) {
+            .step-card { padding: 1rem; }
+            .q-text { font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="doc-number">📘 BLB-LLB-LC-CHLITE-09</div>
+        <div class="title">جزوه آموزشی · ۱۰ عبارت جدید · سری نهم</div>
+        <div class="sub">۶ استپ · توضیح کامل معلم · ۳ سطح پاسخ · تایمر · ضبط صدا</div>
+    </div>
+
+    <div class="timer-card">
+        <div class="timer-display" id="timerDisplay">30:00</div>
+        <div class="timer-controls">
+            <input type="number" id="timerMinutes" class="timer-input" value="30" min="1" max="180" step="5">
+            <button id="timerSetBtn" class="timer-btn">تنظیم</button>
+            <button id="timerStartBtn" class="timer-btn">شروع</button>
+            <button id="timerPauseBtn" class="timer-btn timer-outline">توقف</button>
+            <button id="timerResetBtn" class="timer-btn timer-outline">ریست</button>
+        </div>
+    </div>
+
+    <div class="nav" id="navSteps"></div>
+    <div id="stepContent"></div>
+
+    <div class="recorder-panel">
+        <div class="selected-info" id="selectedInfo">🎯 روی هر سوال کلیک کن — راهنمای کامل و نمونه جواب نشان داده می‌شود</div>
+        <div class="button-group">
+            <button class="btn" id="recordStart">🎙 شروع ضبط (جواب بده)</button>
+            <button class="btn btn-outline" id="recordStop" disabled>⏹ توقف</button>
+            <button class="btn btn-outline" id="recordPlay" disabled>🔊 پخش صدای من</button>
+        </div>
+        <div class="status-text" id="recordStatus"></div>
+        <audio id="audioPlayer" controls style="display:none;"></audio>
+        <div class="footer-note">📖 روش تمرین: سوال را بخوان ← کلیک کن (نمونه جواب نشان داده می‌شود) ← ضبط را بزن ← با صدای بلند جواب بده ← صدایت را با نمونه مقایسه کن</div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // ========================== داده‌های کامل ۶ استپ جزوه 09 ==========================
+        const stepsData = [
+            {
+                name: "Step 1 · Fast Reactions",
+                phrases: ["Come on!"],
+                teacherLong: "«Come on!» یک واکنش سریع و چندمنظوره است. معانی مختلف دارد: ۱) «بیا دیگه!» — برای تشویق یا عجله کردن. ۲) «یعنی چی؟!» — برای ابراز ناباوری یا اعتراض خفیف. ۳) «آخ جون!» — برای ابراز هیجان مثبت. لحن صدا معنی را تعیین می‌کند. لحن شاد = هیجان، لحن جدی = ناراحتی یا ناباوری.",
+                examples: "مثال زنده: تشویق: Come on! You can do it! ناباوری: Come on! That's not true. هیجان: Come on! Let's go!",
+                samples: ["Come on!", "Come on! You've got this.", "Come on! I don't believe you.", "Come on! Let's hurry up."],
+                questions: {
+                    short: ["Encourage a friend before a race.","Show disbelief at an excuse.","Hurry someone up.","Show excitement for a trip.","Protest against an unfair rule."],
+                    combo: ["Your friend is about to give up.","Someone gives a ridiculous excuse.","Someone is taking too long.","Your team is about to win.","Someone says something obviously false."],
+                    long: ["Your friend is scared to do something brave.","Someone keeps making the same mistake.","You've been waiting for someone for 30 minutes.","Your friend is hesitating to take an opportunity.","Someone is being negative about something exciting."]
+                }
+            },
+            {
+                name: "Step 2 · Natural Fillers",
+                phrases: ["You see"],
+                teacherLong: "«You see» یعنی «ببین / می‌بینی که...» — یک فیلر برای توضیح دادن یا جلب توجه طرف مقابل قبل از یک توضیح مهم. نشان می‌دهد که می‌خواهی چیزی را روشن کنی یا دلیلی بیاوری. کمی رسمی‌تر از «you know» است. معمولاً اول جمله می‌آید و بعد توضیح اصلی.",
+                examples: "مثال زنده: توضیح دلیل: You see, I couldn't come because I was sick. توضیح یک حقیقت: You see, that's the problem right there.",
+                samples: ["You see...", "You see, that's why I'm here.", "You see, it's not that simple."],
+                questions: {
+                    short: ["Explain why you were late.","Explain a simple truth.","Start a clarification.","Explain a misunderstanding.","Start a personal story."],
+                    combo: ["Explain why you made a certain decision.","Clarify something the other person misunderstood.","Explain a complex situation simply.","Give a reason for a past action.","Explain why something is difficult."],
+                    long: ["Explain why you've been distant lately.","Clarify a misunderstanding that caused an argument.","Explain a life lesson you learned.","Explain why you changed your mind about something.","Explain the real reason behind a choice."]
+                }
+            },
+            {
+                name: "Step 3 · Softening",
+                phrases: ["I could be wrong but", "If I'm not mistaken"],
+                teacherLong: "دو نرم‌کنندهٔ قوی برای ابراز نظر با فروتنی. «I could be wrong but» یعنی «ممکن است اشتباه کنم اما...» — نشان می‌دهد که به نظرت اطمینان کامل نداری و طرف مقابل را دعوت به تصحیح می‌کنی. «If I'm not mistaken» یعنی «اگر اشتباه نکنم...» — کمی مطمئن‌تر، برای زمانی که فکر می‌کنی درست می‌گویی ولی باز هم محتاط هستی. هر دو خیلی مودبانه و حرفه‌ای هستند.",
+                examples: "مثال زنده: اظهار نظر محتاطانه: I could be wrong, but I think the meeting is at 3. یادآوری اطلاعات: If I'm not mistaken, you've been here before.",
+                samples: ["I could be wrong, but...", "I could be wrong, but I think so.", "If I'm not mistaken...", "If I'm not mistaken, that's correct."],
+                questions: {
+                    short: ["Give an opinion you're not sure about.","Correct someone politely.","Remind someone of a fact.","Offer a suggestion humbly.","Answer a difficult question."],
+                    combo: ["Someone asks for your opinion on a complex topic.","Someone is about to make a mistake.","You're not 100% sure about a fact.","You want to disagree respectfully.","You're answering a question you half-remember."],
+                    long: ["You're in a meeting and want to offer a different perspective.","Someone is arguing about something you're not certain about.","You want to remind someone of a past conversation without being rude.","You're giving advice but acknowledge you might be wrong.","You're discussing a sensitive topic where being wrong could cause problems."]
+                }
+            },
+            {
+                name: "Step 4 · Ending",
+                phrases: ["Take care", "Have a good one"],
+                teacherLong: "دو روش گرم و دوستانه برای خداحافظی. «Take care» یعنی «مواظب خودت باش» — نشان می‌دهد که به سلامتی طرف مقابل اهمیت می‌دهی. برای دوستان، خانواده و حتی آشنایان معمولی. «Have a good one» یعنی «روز خوبی داشته باشی» — بسیار غیررسمی و محاوره‌ای، کوتاه‌شدهٔ «have a good day». هر دو مثبت و گرم هستند. تفاوت: Take care بیشتر دربارهٔ سلامتی، Have a good one دربارهٔ کیفیت روز.",
+                examples: "مثال زنده: خداحافظی با دوست: Take care, see you soon. خداحافظی با همکار: Have a good one, talk tomorrow.",
+                samples: ["Take care.", "Take care of yourself.", "Have a good one.", "Have a good one, see you later."],
+                questions: {
+                    short: ["Say goodbye to a friend.","End a call with family.","Leave a casual meetup.","Say goodbye to a coworker.","End a conversation with an acquaintance."],
+                    combo: ["Your friend is going through a hard time.","You're leaving after a fun hangout.","Someone is about to travel.","You're ending a call with someone who's sick.","You're saying goodbye to someone you see often."],
+                    long: ["You're saying goodbye to someone you won't see for a while.","Your friend is starting a new stressful job.","You're ending a conversation with someone who seems tired.","You're leaving after a short, pleasant interaction.","You're saying goodbye to someone who helped you."]
+                }
+            },
+            {
+                name: "Step 5 · Strong Emotions",
+                phrases: ["Don't get me started", "I'm speechless"],
+                teacherLong: "دو عبارت برای ابراز احساسات قوی. «Don't get me started» یعنی «واسش نذار / من رو به راه ننداز» — وقتی موضوعی آنقدر ناراحت‌کننده یا عصبانی‌کننده است که اگر شروع به حرف زدن کنی، نمی‌توانی متوقف شوی. «I'm speechless» یعنی «حرف ندارم / مات و مبهوت شدم» — برای زمانی که آنقدر شوکه یا تحت تأثیر قرار گرفته‌ای که نمی‌توانی حرف بزنی. هر دو بسیار قوی هستند.",
+                examples: "مثال زنده: موضوع عصبانی‌کننده: The traffic today... don't get me started. شوک مثبت یا منفی: I'm speechless. That's the most beautiful thing I've ever seen.",
+                samples: ["Don't get me started.", "Don't get me started on that topic.", "I'm speechless.", "I'm speechless. I don't know what to say."],
+                questions: {
+                    short: ["Someone mentions a frustrating topic.","You see something amazing.","Someone brings up an old argument.","You receive shocking news.","Someone asks about a bad experience."],
+                    combo: ["Someone asks about your terrible job.","You witness an incredible act of kindness.","Someone mentions a political topic you hate.","You see a breathtaking view.","Someone asks about a past relationship that ended badly."],
+                    long: ["Someone brings up a topic you've been avoiding for years.","You receive an unexpected gift that moves you deeply.","Someone asks for your opinion about someone who wronged you.","You witness something so beautiful or tragic that words fail you.","Someone mentions a situation that makes you want to rant for hours."]
+                }
+            },
+            {
+                name: "Step 6 · Asking Questions",
+                phrases: ["How so?", "Like what?"],
+                teacherLong: "دو سوال برای درخواست جزئیات بیشتر. «How so?» یعنی «چطور؟ / به چه علت؟» — برای زمانی که کسی یک نظر یا ادعای کلی می‌کند و تو می‌خواهی دلیل یا توضیحش را بدانی. «Like what?» یعنی «مثلاً چی؟ / برای مثال؟» — برای زمانی که کسی می‌گوید چیزی وجود دارد و تو می‌خواهی مثال‌های مشخص بشنوی. تفاوت: How so برای دلیل منطقی، Like what برای مثال‌های مشخص.",
+                examples: "مثال زنده: نظر کلی: This is different. تو: How so? ادعا: They have many problems. تو: Like what?",
+                samples: ["How so?", "How so? Explain what you mean.", "Like what?", "Like what? Give me an example."],
+                questions: {
+                    short: ["Someone says 'This is better.'","Someone says 'I've changed.'","Someone says 'There are issues.'","Someone says 'I don't like it.'","Someone says 'Things are different now.'"],
+                    combo: ["Someone says you've improved.","Someone says a place is dangerous.","Someone says a movie is overrated.","Someone says a person is interesting.","Someone says a method doesn't work."],
+                    long: ["Someone gives you vague feedback.","Someone says society has changed for the worse.","Someone claims to have a new philosophy.","Someone says your personality has changed.","Someone says a complex situation has many layers."]
+                }
+            }
+        ];
+
+        let currentStep = 0;
+        let selectedQ = { text: "", sectionName: "", sample: "" };
+        
+        // تایمر
+        let timerInterval = null;
+        let totalSecs = 1800;
+        const timerDisplay = document.getElementById('timerDisplay');
+        const minutesInput = document.getElementById('timerMinutes');
+        function updateTimer() {
+            let m = Math.floor(totalSecs / 60);
+            let s = totalSecs % 60;
+            timerDisplay.textContent = (m<10?'0':'') + m + ':' + (s<10?'0':'') + s;
+        }
+        function setTimer() { let m = parseInt(minutesInput.value) || 30; totalSecs = m * 60; updateTimer(); if(timerInterval){clearInterval(timerInterval); timerInterval=null;} }
+        function startTimer() { if(timerInterval) clearInterval(timerInterval); timerInterval = setInterval(() => { if(totalSecs<=1){ clearInterval(timerInterval); alert("⏰ زمان تمرین تمام شد!"); totalSecs=0; updateTimer(); } else { totalSecs--; updateTimer(); } }, 1000); }
+        function pauseTimer() { if(timerInterval){ clearInterval(timerInterval); timerInterval=null; } }
+        function resetTimer() { if(timerInterval){ clearInterval(timerInterval); timerInterval=null; } let m = parseInt(minutesInput.value) || 30; totalSecs = m * 60; updateTimer(); }
+        document.getElementById('timerSetBtn').onclick = setTimer;
+        document.getElementById('timerStartBtn').onclick = startTimer;
+        document.getElementById('timerPauseBtn').onclick = pauseTimer;
+        document.getElementById('timerResetBtn').onclick = resetTimer;
+        setTimer();
+
+        // ضبط صدا
+        let mediaRec = null;
+        let audioPieces = [];
+        let isRec = false;
+        let streamObj = null;
+        const startRec = document.getElementById('recordStart');
+        const stopRec = document.getElementById('recordStop');
+        const playRec = document.getElementById('recordPlay');
+        const audioElem = document.getElementById('audioPlayer');
+        const recStatus = document.getElementById('recordStatus');
+
+        function renderNav() {
+            const navDiv = document.getElementById('navSteps');
+            navDiv.innerHTML = stepsData.map((s, i) => `<button class="nav-btn ${i===currentStep?'active':''}" data-idx="${i}">${s.name}</button>`).join('');
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.onclick = () => { currentStep = parseInt(btn.dataset.idx); renderNav(); renderStep(); selectedQ = { text: "", sectionName: "", sample: "" }; document.getElementById('selectedInfo').innerHTML = "🎯 روی هر سوال کلیک کن"; document.body.classList.remove('blur-mode'); audioElem.style.display = 'none'; };
+            });
+        }
+
+        function renderStep() {
+            const step = stepsData[currentStep];
+            const sections = [
+                { key: "short", title: "⚡ پاسخ کوتاه", desc: "فقط همان عبارت را بگو. بدون توضیح اضافه. هدف: واکنش در نیم ثانیه.", sampleIdx: 0 },
+                { key: "combo", title: "🎯 پاسخ ترکیبی", desc: "عبارت + یک جمله کوتاه (۳ تا ۱۰ کلمه). عبارت را ثابت نگه دار، جمله را تغییر بده.", sampleIdx: 1 },
+                { key: "long", title: "🧠 پاسخ گسترده", desc: "عبارت + تجربه شخصی یا توضیح کامل. مغزت را مجبور به اتصال به زندگی واقعی کن.", sampleIdx: 2 }
+            ];
+            let html = `
+                <div class="step-card">
+                    <div class="step-name">${step.name}</div>
+                    <div class="phrases-row">${step.phrases.map(p => `<span class="phrase-badge">💬 ${p}</span>`).join('')}</div>
+                    <div class="teacher-full">
+                        <div class="teacher-title">👩‍🏫 توضیح کامل معلم (قبل از تمرین بخوان)</div>
+                        <div class="teacher-text">${step.teacherLong}</div>
+                        <div class="example-live">📖 مثال زنده: ${step.examples || step.samples[1]}</div>
+                    </div>
+            `;
+            for(let sec of sections) {
+                const qs = step.questions[sec.key];
+                if(!qs) continue;
+                html += `
+                    <div class="section">
+                        <div class="section-header">
+                            <div class="section-title">${sec.title}</div>
+                        </div>
+                        <div class="section-desc">📌 ${sec.desc} | نمونه: «${step.samples[sec.sampleIdx]}»</div>
+                `;
+                for(let i=0; i<qs.length; i++) {
+                    let q = qs[i];
+                    let safeQ = q.replace(/"/g, '&quot;');
+                    html += `
+                        <div class="q-item" data-q="${safeQ}" data-section="${sec.title}" data-sample="${step.samples[sec.sampleIdx].replace(/"/g, '&quot;')}">
+                            <div class="q-header">
+                                <span class="q-num">#${(i+1).toString().padStart(2,'0')}</span>
+                                <span class="q-badge">${sec.title}</span>
+                                <button class="audio-icon" data-read="${safeQ}">🔊</button>
+                            </div>
+                            <div class="q-text">${q}</div>
+                            <div class="sample-box">📖 نمونه جواب کامل: ${step.samples[sec.sampleIdx]}</div>
+                        </div>
+                    `;
+                }
+                html += `</div>`;
+            }
+            html += `</div>`;
+            document.getElementById('stepContent').innerHTML = html;
+
+            document.querySelectorAll('.q-item').forEach(item => {
+                item.onclick = (e) => {
+                    if(e.target.classList.contains('audio-icon')) return;
+                    document.querySelectorAll('.q-item').forEach(el => el.classList.remove('selected'));
+                    item.classList.add('selected');
+                    selectedQ = {
+                        text: item.dataset.q,
+                        sectionName: item.dataset.section,
+                        sample: item.dataset.sample
+                    };
+                    document.getElementById('selectedInfo').innerHTML = `✅ ${selectedQ.text.substring(0,70)} | ${selectedQ.sectionName} | نمونه: ${selectedQ.sample}`;
+                    document.body.classList.remove('blur-mode');
+                    audioElem.style.display = 'none';
+                };
+                const audioBtn = item.querySelector('.audio-icon');
+                if(audioBtn) {
+                    audioBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        let utter = new SpeechSynthesisUtterance(audioBtn.dataset.read);
+                        utter.lang = 'en-US';
+                        utter.rate = 0.85;
+                        window.speechSynthesis.cancel();
+                        window.speechSynthesis.speak(utter);
+                    };
+                }
+            });
+        }
+
+        async function startRecording() {
+            if(!selectedQ.text) { recStatus.innerHTML = '⚠️ ابتدا روی یک سوال کلیک کن'; return; }
+            if(isRec) return;
+            document.body.classList.add('blur-mode');
+            audioPieces = [];
+            try {
+                let stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                streamObj = stream;
+                mediaRec = new MediaRecorder(stream);
+                mediaRec.ondataavailable = (e) => { if(e.data.size > 0) audioPieces.push(e.data); };
+                mediaRec.onstop = () => {
+                    let blob = new Blob(audioPieces, { type: 'audio/webm' });
+                    audioElem.src = URL.createObjectURL(blob);
+                    audioElem.style.display = 'block';
+                    playRec.disabled = false;
+                    recStatus.innerHTML = '✅ ضبط شد. پخش کن و با نمونه جواب مقایسه کن.';
+                    if(streamObj) streamObj.getTracks().forEach(t => t.stop());
+                    isRec = false;
+                    startRec.disabled = false;
+                    stopRec.disabled = true;
+                    document.body.classList.remove('blur-mode');
+                };
+                mediaRec.start();
+                isRec = true;
+                startRec.disabled = true;
+                stopRec.disabled = false;
+                recStatus.innerHTML = '🔴 در حال ضبط جواب تو... (سوال مخفی شد)';
+            } catch(err) {
+                recStatus.innerHTML = '❌ اجازه دسترسی به میکروفون داده نشد';
+                document.body.classList.remove('blur-mode');
+            }
+        }
+        function stopRecording() { if(mediaRec && isRec && mediaRec.state !== 'inactive') mediaRec.stop(); }
+        function playRecording() { if(audioElem.src) audioElem.play(); }
+
+        startRec.onclick = startRecording;
+        stopRec.onclick = stopRecording;
+        playRec.onclick = playRecording;
+
+        renderNav();
+        renderStep();
+    })();
+</script>
+</body>
+</html>
