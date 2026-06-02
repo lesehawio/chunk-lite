@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>جزوه 04 · BLB-LLB-LC-CHLITE · ۱۰ عبارت جدید</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0A0818;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #F0EEFC;
+            padding: 2rem 1rem;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header {
+            border-bottom: 2px solid #A87CFF;
+            padding-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .doc-number {
+            font-size: 0.7rem;
+            color: #FFD966;
+            background: rgba(255,217,102,0.1);
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 2rem;
+        }
+        .title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFF, #A87CFF);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-top: 0.5rem;
+        }
+        .sub {
+            font-size: 0.8rem;
+            color: #B0ABD4;
+            margin-top: 0.3rem;
+        }
+
+        .timer-card {
+            background: #16142E;
+            border: 1px solid #2A2748;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .timer-display {
+            font-family: monospace;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #FFD966;
+        }
+        .timer-controls {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .timer-input {
+            background: #0A0818;
+            border: 1px solid #2A2748;
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 1rem;
+            width: 70px;
+            text-align: center;
+        }
+        .timer-btn {
+            background: #A87CFF;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 1.5rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+            color: #0A0818;
+            font-weight: 600;
+        }
+        .timer-outline {
+            background: transparent;
+            border: 1px solid #A87CFF;
+            color: #A87CFF;
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            background: #16142E;
+            padding: 0.6rem 1rem;
+            border-radius: 3rem;
+        }
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: #B0ABD4;
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .nav-btn.active {
+            background: #A87CFF;
+            color: #0A0818;
+            font-weight: 700;
+        }
+
+        .step-card {
+            background: #16142E;
+            border: 1px solid #2A2748;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .step-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .phrases-row {
+            margin: 0.8rem 0 1.2rem 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #2A2748;
+        }
+        .phrase-badge {
+            background: rgba(168,124,255,0.2);
+            padding: 0.3rem 1rem;
+            border-radius: 2rem;
+            display: inline-block;
+            margin-left: 0.8rem;
+            margin-bottom: 0.4rem;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .teacher-full {
+            background: rgba(168,124,255,0.08);
+            border-right: 4px solid #A87CFF;
+            padding: 1.2rem;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .teacher-title {
+            font-size: 0.7rem;
+            color: #A87CFF;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        .teacher-text {
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        .example-live {
+            background: rgba(255,217,102,0.08);
+            padding: 0.8rem;
+            border-radius: 0.8rem;
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            border-left: 3px solid #FFD966;
+        }
+
+        .section {
+            margin-top: 1.8rem;
+        }
+        .section-header {
+            border-bottom: 1px solid #2A2748;
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: baseline;
+        }
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .section-desc {
+            font-size: 0.7rem;
+            color: #FFD966;
+            margin-bottom: 0.8rem;
+            margin-right: 1rem;
+        }
+        .q-item {
+            background: rgba(255,255,255,0.02);
+            padding: 0.9rem;
+            border-radius: 1rem;
+            margin-bottom: 0.7rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .q-item:hover {
+            border-color: #A87CFF;
+            background: rgba(168,124,255,0.05);
+        }
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.4rem;
+        }
+        .q-num {
+            font-size: 0.65rem;
+            color: #A87CFF;
+        }
+        .q-badge {
+            font-size: 0.6rem;
+            background: rgba(168,124,255,0.2);
+            padding: 0.2rem 0.6rem;
+            border-radius: 1rem;
+        }
+        .q-text {
+            font-size: 0.85rem;
+            direction: ltr;
+            text-align: left;
+            font-family: monospace;
+            margin: 0.4rem 0;
+        }
+        .audio-icon {
+            background: none;
+            border: none;
+            color: #B0ABD4;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .sample-box {
+            font-size: 0.7rem;
+            color: #5CD97A;
+            margin-top: 0.5rem;
+            padding-top: 0.4rem;
+            border-top: 1px dashed #2A2748;
+            display: none;
+        }
+        .q-item.selected .sample-box {
+            display: block;
+        }
+
+        .recorder-panel {
+            background: #16142E;
+            border: 1px solid #2A2748;
+            border-radius: 1.5rem;
+            padding: 1.2rem;
+            position: sticky;
+            bottom: 0.5rem;
+            backdrop-filter: blur(12px);
+        }
+        .selected-info {
+            font-size: 0.75rem;
+            color: #FFD966;
+            margin-bottom: 0.8rem;
+        }
+        .button-group {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
+        .btn {
+            background: #A87CFF;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #0A0818;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #A87CFF;
+            color: #A87CFF;
+        }
+        .status-text {
+            font-size: 0.65rem;
+            color: #B0ABD4;
+        }
+        audio {
+            width: 100%;
+            margin-top: 0.5rem;
+            border-radius: 1rem;
+        }
+        .blur-mode .q-text {
+            filter: blur(5px);
+            user-select: none;
+        }
+        .footer-note {
+            text-align: center;
+            font-size: 0.6rem;
+            color: #B0ABD4;
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid #2A2748;
+        }
+        @media (max-width: 650px) {
+            .step-card { padding: 1rem; }
+            .q-text { font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="doc-number">📘 BLB-LLB-LC-CHLITE-04</div>
+        <div class="title">جزوه آموزشی · ۱۰ عبارت جدید · سری چهارم</div>
+        <div class="sub">۶ استپ · توضیح کامل معلم · ۳ سطح پاسخ · تایمر · ضبط صدا</div>
+    </div>
+
+    <div class="timer-card">
+        <div class="timer-display" id="timerDisplay">30:00</div>
+        <div class="timer-controls">
+            <input type="number" id="timerMinutes" class="timer-input" value="30" min="1" max="180" step="5">
+            <button id="timerSetBtn" class="timer-btn">تنظیم</button>
+            <button id="timerStartBtn" class="timer-btn">شروع</button>
+            <button id="timerPauseBtn" class="timer-btn timer-outline">توقف</button>
+            <button id="timerResetBtn" class="timer-btn timer-outline">ریست</button>
+        </div>
+    </div>
+
+    <div class="nav" id="navSteps"></div>
+    <div id="stepContent"></div>
+
+    <div class="recorder-panel">
+        <div class="selected-info" id="selectedInfo">🎯 روی هر سوال کلیک کن — راهنمای کامل و نمونه جواب نشان داده می‌شود</div>
+        <div class="button-group">
+            <button class="btn" id="recordStart">🎙 شروع ضبط (جواب بده)</button>
+            <button class="btn btn-outline" id="recordStop" disabled>⏹ توقف</button>
+            <button class="btn btn-outline" id="recordPlay" disabled>🔊 پخش صدای من</button>
+        </div>
+        <div class="status-text" id="recordStatus"></div>
+        <audio id="audioPlayer" controls style="display:none;"></audio>
+        <div class="footer-note">📖 روش تمرین: سوال را بخوان ← کلیک کن (نمونه جواب نشان داده می‌شود) ← ضبط را بزن ← با صدای بلند جواب بده ← صدایت را با نمونه مقایسه کن</div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // ========================== داده‌های کامل ۶ استپ جزوه 04 ==========================
+        const stepsData = [
+            {
+                name: "Step 1 · Fast Reactions",
+                phrases: ["No way!", "For real?"],
+                teacherLong: "این دو عبارت برای ابراز تعجب و باورنکردنی بودن یک خبر استفاده می‌شوند. «No way!» یعنی «نشدنی! / باور نمی‌کنم!» — برای چیزهایی که خیلی تعجب‌آور یا باورنکردنی هستند. «For real?» یعنی «واقعاً؟ / جدی؟» — برای تأیید گرفتن از طرف مقابل که آیا راست می‌گوید. تفاوت: No way بیشتر برای تعجب شخصی، For real برای پرسیدن تأیید از طرف مقابل.",
+                examples: "مثال زنده: دوستت می‌گوید «من برنده شدم»: No way! Really? کسی می‌گوید «فردا امتحان داریم»: For real? I thought it was next week.",
+                samples: ["No way!", "No way! That's incredible.", "For real? Are you serious?", "For real? I can't believe it."],
+                questions: {
+                    short: ["Someone says: 'I won the lottery.'","Your friend says: 'I'm moving to another country.'","Someone says: 'This is free.'","Your friend says: 'I saw a ghost.'","Someone says: 'You got the job.'"],
+                    combo: ["Someone says: 'I finished the whole project in one day.'","Your friend says: 'I've never eaten pizza.'","Someone says: 'They canceled the exam.'","Your friend says: 'I'm getting married next week.'","Someone says: 'This is the last time we talk.'"],
+                    long: ["Someone tells you an unbelievable story about their past.","Your friend says they're quitting their job to travel the world.","Someone says they met a famous celebrity yesterday.","Your friend says they've been hiding a secret for 10 years.","Someone says they don't believe in hard work anymore."]
+                }
+            },
+            {
+                name: "Step 2 · Natural Fillers",
+                phrases: ["So", "Like"],
+                teacherLong: "دو فیلر بسیار رایج در انگلیسی محاوره‌ای. «So» یعنی «خب / پس» — برای شروع یک توضیح، نتیجه‌گیری، یا تغییر موضوع. «Like» یعنی «مثل / یه جورایی» — برای مثال زدن، یا پر کردن مکث در حین فکر کردن. توجه: Like بیش از حد استفاده نشود. So رسمی‌تر از Like است.",
+                examples: "مثال زنده: شروع توضیح: So, here's the plan. پر کردن مکث: It was, like, really hard. نتیجه‌گیری: So, that's why I'm here.",
+                samples: ["So...", "So, here's what I think.", "Like...", "It was, like, the best day ever."],
+                questions: {
+                    short: ["Start explaining your day.","Start a conclusion.","Start telling a story.","Pause while thinking.","Give an example."],
+                    combo: ["Explain why you're late.","Start a difficult conversation.","Describe something amazing.","Pause to find the right word.","Start a summary of a long meeting."],
+                    long: ["Tell a story from your childhood.","Explain a complex problem and solution.","Describe a movie you just watched.","Explain how you learned English.","Describe a person's personality using like."]
+                }
+            },
+            {
+                name: "Step 3 · Softening",
+                phrases: ["I feel like", "Kind of"],
+                teacherLong: "دو نرم‌کننده عالی برای بیان نظر شخصی بدون تحمیل. «I feel like» یعنی «حس می‌کنم که / به نظرم می‌رسد» — برای بیان احساسات یا نظرات شخصی، قابل تعویض با I think اما نرم‌تر. «Kind of» یعنی «یه جورایی / تا حدی» — برای کاهش قدرت یک جمله یا ابراز عدم قطعیت. تفاوت: I feel like به احساس ارجاع می‌دهد، Kind of شدت جمله را کم می‌کند.",
+                examples: "مثال زنده: نظر شخصی: I feel like we should wait. کاهش شدت: It's kind of expensive. I feel like با جمله طولانی: I feel like nobody understands me.",
+                samples: ["I feel like...", "I feel like this is the right choice.", "Kind of...", "It's kind of hard to explain."],
+                questions: {
+                    short: ["Give your opinion on a movie.","Say something is difficult.","Express a feeling.","Say something is not completely true.","Start a personal statement."],
+                    combo: ["Explain why you're unhappy.","Describe something that's almost ready.","Give advice to a friend.","Explain why you're confused.","Describe a food you don't really like."],
+                    long: ["Express a deep personal struggle.","Describe a situation that's both good and bad.","Explain why you're not sure about a decision.","Describe how you feel about your English progress.","Explain a complicated emotion."]
+                }
+            },
+            {
+                name: "Step 4 · Ending",
+                phrases: ["It was nice talking to you", "Well, I should get going"],
+                teacherLong: "دو روش مودبانه و حرفه‌ای برای پایان دادن به مکالمه. «It was nice talking to you» یعنی «از صحبت با شما لذت بردم» — برای آشنایان، همکاران، یا موقعیت‌های نیمه‌رسمی. «Well, I should get going» یعنی «خب، بهتره برم» — برای هر موقعیتی، نشان می‌دهد که خودت داری مکالمه را تمام می‌کنی. تفاوت: اولی مودبانه‌تر و گرم‌تر است، دلی طبیعی‌تر.",
+                examples: "مثال زنده: پایان تماس کاری: It was nice talking to you. I'll email you. پایان صحبت با دوست: Well, I should get going. Talk later.",
+                samples: ["It was nice talking to you.", "It was nice talking to you. Have a good day.", "Well, I should get going.", "Well, I should get going. I have a meeting soon."],
+                questions: {
+                    short: ["End a phone call with a colleague.","End a conversation at a party.","End a chat with a neighbor.","End a video call with a client.","End a casual conversation with a friend."],
+                    combo: ["You're late for an appointment.","The other person seems busy.","You enjoyed the conversation but need to leave.","You finished a work discussion.","You're at a networking event and need to talk to others."],
+                    long: ["You had a deep conversation with someone you admire.","You're leaving a family gathering.","You finished a difficult conversation politely.","You're ending a call with someone who talks too much.","You want to leave without being rude."]
+                }
+            },
+            {
+                name: "Step 5 · Strong Emotions",
+                phrases: ["That's insane"],
+                teacherLong: "«That's insane» یعنی «این دیوانگی است / باورنکردنی است» — برای موقعیت‌هایی که چیزی فراتر از حد تصور است: یک خبر باورنکردنی، یک کار احمقانه، یا یک اتفاق عجیب. بسته به لحن می‌تواند مثبت (تحسین‌آمیز) یا منفی (انتقادی) باشد. لحن شاد = تحسین. لحن جدی = انتقاد یا ناباوری.",
+                examples: "مثال زنده: خبر باورنکردنی: He ran a marathon without training? That's insane! (تحسین) تصمیم احمقانه: You quit your job without a plan? That's insane. (انتقاد)",
+                samples: ["That's insane!", "That's insane. I can't believe it.", "That's absolutely insane. Who would do that?"],
+                questions: {
+                    short: ["Someone did something dangerous.","You hear an unbelievable news.","Someone made a crazy decision.","You see something shocking.","Someone tells an impossible story."],
+                    combo: ["Your friend spent all their savings on a car.","Someone says they've never used the internet.","You see someone do a dangerous stunt.","Someone says they work 20 hours a day.","You hear a ridiculous rumor."],
+                    long: ["Someone tells you a story that's hard to believe but true.","You see someone make a huge mistake.","You hear about an unfair situation.","Someone achieves something impossible.","You witness something that goes against logic."]
+                }
+            },
+            {
+                name: "Step 6 · Asking Questions",
+                phrases: ["What are you getting at?"],
+                teacherLong: "«What are you getting at?» یعنی «به چه چیزی داری اشاره می‌کنی؟ / منظورت چیه؟» — زمانی استفاده می‌شود که طرف مقابل غیرمستقیم حرف می‌زند و تو می‌خواهی مستقیم بفهمی هدفش چیست. این سوال کمی مستقیم است، پس با دوستان صمیمی یا زمانی که واقعاً گیج شده‌ای استفاده کن. جایگزین مودبانه: What do you mean?",
+                examples: "مثال زنده: دوستت دارد حرف می‌زند ولی نمی‌گوید دقیقاً چه می‌خواهد: What are you getting at? Just tell me. همکار غیرمستقیم حرف می‌زند: I'm not following. What are you getting at?",
+                samples: ["What are you getting at?", "I don't understand. What are you getting at?", "Just say it directly. What are you getting at?"],
+                questions: {
+                    short: ["Someone is hinting but not saying.","A colleague is being indirect.","Your friend is beating around the bush.","Someone is implying something negative.","You're confused by a vague statement."],
+                    combo: ["Your boss is giving hints about something.","Your partner is upset but won't say why.","Someone is criticizing you indirectly.","A friend is trying to ask for a favor without asking.","Someone keeps giving examples but no conclusion."],
+                    long: ["You're in a serious conversation and the other person is avoiding the main point.","Someone has been dropping hints all day and you want them to be direct.","A colleague keeps talking about problems without suggesting solutions.","Your friend is trying to tell you bad news indirectly.","Someone is giving you advice but you don't know what they want you to do."]
+                }
+            }
+        ];
+
+        let currentStep = 0;
+        let selectedQ = { text: "", sectionName: "", sample: "" };
+        
+        // تایمر
+        let timerInterval = null;
+        let totalSecs = 1800;
+        const timerDisplay = document.getElementById('timerDisplay');
+        const minutesInput = document.getElementById('timerMinutes');
+        function updateTimer() {
+            let m = Math.floor(totalSecs / 60);
+            let s = totalSecs % 60;
+            timerDisplay.textContent = (m<10?'0':'') + m + ':' + (s<10?'0':'') + s;
+        }
+        function setTimer() { let m = parseInt(minutesInput.value) || 30; totalSecs = m * 60; updateTimer(); if(timerInterval){clearInterval(timerInterval); timerInterval=null;} }
+        function startTimer() { if(timerInterval) clearInterval(timerInterval); timerInterval = setInterval(() => { if(totalSecs<=1){ clearInterval(timerInterval); alert("⏰ زمان تمرین تمام شد!"); totalSecs=0; updateTimer(); } else { totalSecs--; updateTimer(); } }, 1000); }
+        function pauseTimer() { if(timerInterval){ clearInterval(timerInterval); timerInterval=null; } }
+        function resetTimer() { if(timerInterval){ clearInterval(timerInterval); timerInterval=null; } let m = parseInt(minutesInput.value) || 30; totalSecs = m * 60; updateTimer(); }
+        document.getElementById('timerSetBtn').onclick = setTimer;
+        document.getElementById('timerStartBtn').onclick = startTimer;
+        document.getElementById('timerPauseBtn').onclick = pauseTimer;
+        document.getElementById('timerResetBtn').onclick = resetTimer;
+        setTimer();
+
+        // ضبط صدا
+        let mediaRec = null;
+        let audioPieces = [];
+        let isRec = false;
+        let streamObj = null;
+        const startRec = document.getElementById('recordStart');
+        const stopRec = document.getElementById('recordStop');
+        const playRec = document.getElementById('recordPlay');
+        const audioElem = document.getElementById('audioPlayer');
+        const recStatus = document.getElementById('recordStatus');
+
+        function renderNav() {
+            const navDiv = document.getElementById('navSteps');
+            navDiv.innerHTML = stepsData.map((s, i) => `<button class="nav-btn ${i===currentStep?'active':''}" data-idx="${i}">${s.name}</button>`).join('');
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.onclick = () => { currentStep = parseInt(btn.dataset.idx); renderNav(); renderStep(); selectedQ = { text: "", sectionName: "", sample: "" }; document.getElementById('selectedInfo').innerHTML = "🎯 روی هر سوال کلیک کن"; document.body.classList.remove('blur-mode'); audioElem.style.display = 'none'; };
+            });
+        }
+
+        function renderStep() {
+            const step = stepsData[currentStep];
+            const sections = [
+                { key: "short", title: "⚡ پاسخ کوتاه", desc: "فقط همان عبارت را بگو. بدون توضیح اضافه. هدف: واکنش در نیم ثانیه.", sampleIdx: 0 },
+                { key: "combo", title: "🎯 پاسخ ترکیبی", desc: "عبارت + یک جمله کوتاه (۳ تا ۱۰ کلمه). عبارت را ثابت نگه دار، جمله را تغییر بده.", sampleIdx: 1 },
+                { key: "long", title: "🧠 پاسخ گسترده", desc: "عبارت + تجربه شخصی یا توضیح کامل. مغزت را مجبور به اتصال به زندگی واقعی کن.", sampleIdx: 2 }
+            ];
+            let html = `
+                <div class="step-card">
+                    <div class="step-name">${step.name}</div>
+                    <div class="phrases-row">${step.phrases.map(p => `<span class="phrase-badge">💬 ${p}</span>`).join('')}</div>
+                    <div class="teacher-full">
+                        <div class="teacher-title">👩‍🏫 توضیح کامل معلم (قبل از تمرین بخوان)</div>
+                        <div class="teacher-text">${step.teacherLong}</div>
+                        <div class="example-live">📖 مثال زنده: ${step.examples || step.samples[1]}</div>
+                    </div>
+            `;
+            for(let sec of sections) {
+                const qs = step.questions[sec.key];
+                if(!qs) continue;
+                html += `
+                    <div class="section">
+                        <div class="section-header">
+                            <div class="section-title">${sec.title}</div>
+                        </div>
+                        <div class="section-desc">📌 ${sec.desc} | نمونه: «${step.samples[sec.sampleIdx]}»</div>
+                `;
+                for(let i=0; i<qs.length; i++) {
+                    let q = qs[i];
+                    let safeQ = q.replace(/"/g, '&quot;');
+                    html += `
+                        <div class="q-item" data-q="${safeQ}" data-section="${sec.title}" data-sample="${step.samples[sec.sampleIdx].replace(/"/g, '&quot;')}">
+                            <div class="q-header">
+                                <span class="q-num">#${(i+1).toString().padStart(2,'0')}</span>
+                                <span class="q-badge">${sec.title}</span>
+                                <button class="audio-icon" data-read="${safeQ}">🔊</button>
+                            </div>
+                            <div class="q-text">${q}</div>
+                            <div class="sample-box">📖 نمونه جواب کامل: ${step.samples[sec.sampleIdx]}</div>
+                        </div>
+                    `;
+                }
+                html += `</div>`;
+            }
+            html += `</div>`;
+            document.getElementById('stepContent').innerHTML = html;
+
+            document.querySelectorAll('.q-item').forEach(item => {
+                item.onclick = (e) => {
+                    if(e.target.classList.contains('audio-icon')) return;
+                    document.querySelectorAll('.q-item').forEach(el => el.classList.remove('selected'));
+                    item.classList.add('selected');
+                    selectedQ = {
+                        text: item.dataset.q,
+                        sectionName: item.dataset.section,
+                        sample: item.dataset.sample
+                    };
+                    document.getElementById('selectedInfo').innerHTML = `✅ ${selectedQ.text.substring(0,70)} | ${selectedQ.sectionName} | نمونه: ${selectedQ.sample}`;
+                    document.body.classList.remove('blur-mode');
+                    audioElem.style.display = 'none';
+                };
+                const audioBtn = item.querySelector('.audio-icon');
+                if(audioBtn) {
+                    audioBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        let utter = new SpeechSynthesisUtterance(audioBtn.dataset.read);
+                        utter.lang = 'en-US';
+                        utter.rate = 0.85;
+                        window.speechSynthesis.cancel();
+                        window.speechSynthesis.speak(utter);
+                    };
+                }
+            });
+        }
+
+        async function startRecording() {
+            if(!selectedQ.text) { recStatus.innerHTML = '⚠️ ابتدا روی یک سوال کلیک کن'; return; }
+            if(isRec) return;
+            document.body.classList.add('blur-mode');
+            audioPieces = [];
+            try {
+                let stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                streamObj = stream;
+                mediaRec = new MediaRecorder(stream);
+                mediaRec.ondataavailable = (e) => { if(e.data.size > 0) audioPieces.push(e.data); };
+                mediaRec.onstop = () => {
+                    let blob = new Blob(audioPieces, { type: 'audio/webm' });
+                    audioElem.src = URL.createObjectURL(blob);
+                    audioElem.style.display = 'block';
+                    playRec.disabled = false;
+                    recStatus.innerHTML = '✅ ضبط شد. پخش کن و با نمونه جواب مقایسه کن.';
+                    if(streamObj) streamObj.getTracks().forEach(t => t.stop());
+                    isRec = false;
+                    startRec.disabled = false;
+                    stopRec.disabled = true;
+                    document.body.classList.remove('blur-mode');
+                };
+                mediaRec.start();
+                isRec = true;
+                startRec.disabled = true;
+                stopRec.disabled = false;
+                recStatus.innerHTML = '🔴 در حال ضبط جواب تو... (سوال مخفی شد)';
+            } catch(err) {
+                recStatus.innerHTML = '❌ اجازه دسترسی به میکروفون داده نشد';
+                document.body.classList.remove('blur-mode');
+            }
+        }
+        function stopRecording() { if(mediaRec && isRec && mediaRec.state !== 'inactive') mediaRec.stop(); }
+        function playRecording() { if(audioElem.src) audioElem.play(); }
+
+        startRec.onclick = startRecording;
+        stopRec.onclick = stopRecording;
+        playRec.onclick = playRecording;
+
+        renderNav();
+        renderStep();
+    })();
+</script>
+</body>
+</html>
