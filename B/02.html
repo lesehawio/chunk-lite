@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>جزوه 02 · BLB-LLB-LC-CHLITE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0D0B1A;
+            font-family: 'Inter', system-ui, sans-serif;
+            color: #F0EEFC;
+            padding: 1.5rem;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .header {
+            border-bottom: 2px solid #A87CFF;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .doc-number {
+            font-size: 0.7rem;
+            color: #FFD966;
+            background: rgba(255,217,102,0.1);
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 2rem;
+        }
+        .title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFF, #A87CFF);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .timer-section {
+            background: #16142E;
+            border: 1px solid #2A2748;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .timer-display {
+            font-family: monospace;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #FFD966;
+        }
+        .timer-input-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .timer-input {
+            background: #0D0B1A;
+            border: 1px solid #2A2748;
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 1rem;
+            width: 70px;
+            text-align: center;
+        }
+        .timer-btn {
+            background: #A87CFF;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 1.5rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+            color: #0D0B1A;
+            font-weight: 600;
+        }
+        .timer-btn-outline {
+            background: transparent;
+            border: 1px solid #A87CFF;
+            color: #A87CFF;
+        }
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            background: #16142E;
+            padding: 0.6rem 1rem;
+            border-radius: 3rem;
+        }
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: #B0ABD4;
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            border-radius: 2rem;
+            cursor: pointer;
+        }
+        .nav-btn.active {
+            background: #A87CFF;
+            color: #0D0B1A;
+            font-weight: 600;
+        }
+        .step-card {
+            background: #16142E;
+            border: 1px solid #2A2748;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .step-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .step-phrases {
+            color: #FFD966;
+            margin: 0.5rem 0 1rem 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #2A2748;
+        }
+        .phrase-badge {
+            background: rgba(168,124,255,0.2);
+            padding: 0.2rem 0.8rem;
+            border-radius: 2rem;
+            display: inline-block;
+            margin-left: 0.5rem;
+            font-family: monospace;
+        }
+        .teacher-box {
+            background: rgba(168,124,255,0.08);
+            border-right: 4px solid #A87CFF;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .section {
+            margin-top: 1.5rem;
+        }
+        .section-header {
+            border-bottom: 1px solid #2A2748;
+            padding-bottom: 0.3rem;
+            margin-bottom: 0.8rem;
+        }
+        .section-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        .section-desc {
+            font-size: 0.7rem;
+            color: #FFD966;
+            margin-bottom: 0.8rem;
+        }
+        .q-item {
+            background: rgba(255,255,255,0.02);
+            padding: 0.8rem;
+            border-radius: 1rem;
+            margin-bottom: 0.6rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+        .q-item:hover {
+            border-color: #A87CFF;
+            background: rgba(168,124,255,0.05);
+        }
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .q-num {
+            font-size: 0.65rem;
+            color: #A87CFF;
+        }
+        .q-badge {
+            font-size: 0.6rem;
+            background: rgba(168,124,255,0.2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 1rem;
+        }
+        .q-text {
+            font-size: 0.85rem;
+            direction: ltr;
+            text-align: left;
+            font-family: monospace;
+            margin: 0.5rem 0;
+        }
+        .audio-icon {
+            background: none;
+            border: none;
+            color: #B0ABD4;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .sample-answer {
+            font-size: 0.7rem;
+            color: #5CD97A;
+            margin-top: 0.5rem;
+            padding-top: 0.3rem;
+            border-top: 1px dashed #2A2748;
+            display: none;
+        }
+        .q-item.selected .sample-answer {
+            display: block;
+        }
+        .recorder {
+            background: #16142E;
+            border: 1px solid #2A2748;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            position: sticky;
+            bottom: 0.5rem;
+            backdrop-filter: blur(12px);
+        }
+        .selected-track {
+            font-size: 0.75rem;
+            color: #FFD966;
+            margin-bottom: 0.8rem;
+        }
+        .btn-group {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
+        .btn {
+            background: #A87CFF;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #0D0B1A;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #A87CFF;
+            color: #A87CFF;
+        }
+        .status {
+            font-size: 0.65rem;
+            color: #B0ABD4;
+        }
+        audio {
+            width: 100%;
+            margin-top: 0.5rem;
+            border-radius: 1rem;
+        }
+        .blur-text .q-text {
+            filter: blur(5px);
+            user-select: none;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.6rem;
+            color: #B0ABD4;
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid #2A2748;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="doc-number">📘 BLB-LLB-LC-CHLITE-02</div>
+        <div class="title">جزوه آموزشی ۱۰ عبارت جدید</div>
+    </div>
+
+    <div class="timer-section">
+        <div class="timer-display" id="timerDisplay">30:00</div>
+        <div class="timer-input-group">
+            <input type="number" id="timerMinutes" class="timer-input" value="30" min="1" max="180" step="5">
+            <button id="timerSetBtn" class="timer-btn">تنظیم</button>
+            <button id="timerStartBtn" class="timer-btn">شروع</button>
+            <button id="timerPauseBtn" class="timer-btn timer-btn-outline">توقف</button>
+            <button id="timerResetBtn" class="timer-btn timer-btn-outline">ریست</button>
+        </div>
+    </div>
+
+    <div class="nav" id="navSteps"></div>
+    <div id="stepContent"></div>
+
+    <div class="recorder">
+        <div class="selected-track" id="selectedTrack">🎯 روی هر سوال کلیک کن</div>
+        <div class="btn-group">
+            <button class="btn" id="recordStartBtn">🎙 شروع ضبط</button>
+            <button class="btn btn-outline" id="recordStopBtn" disabled>⏹ توقف</button>
+            <button class="btn btn-outline" id="recordPlayBtn" disabled>🔊 پخش صدا</button>
+        </div>
+        <div class="status" id="recordStatus"></div>
+        <audio id="audioPlayer" controls style="display:none;"></audio>
+        <div class="footer">کلیک روی سوال → نمونه جواب نشان داده می‌شود → ضبط → جواب بده → مقایسه کن</div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // داده‌های سوالات
+        var step1Questions = {
+            short: ["Someone says: 'I'm really tired of studying.'","Your friend says: 'This movie is so sad.'","A coworker says: 'This week has been awful.'","Someone says: 'I feel so alone in this.'","Your partner says: 'I don't have energy for anything.'"],
+            combo: ["Someone says: 'Learning English is exhausting.'","Your friend says: 'I keep forgetting everything.'","Someone says: 'Nobody understands me.'","A classmate says: 'This grammar rule makes no sense.'","Someone says: 'I'm so done with today.'"],
+            long: ["Someone says: 'I feel stupid when I speak slowly.'","Your friend says: 'I practiced for months and nothing changed.'","Someone says: 'I'm afraid to talk to native speakers.'","A learner says: 'I think I'll never be fluent.'","Someone says: 'I hate my accent.'"]
+        };
+        var step2Questions = {
+            short: ["What's your favorite food?","Where do you live?","What time is it?","Do you like coffee?","What are you doing?"],
+            combo: ["Why are you learning English?","Is this method working?","Are you free tomorrow?","Do you understand this lesson?","Will you practice today?"],
+            long: ["Correct something you said wrong.","Clarify when someone misunderstood you.","Change your opinion politely.","Add a new point to the conversation.","Rephrase when you forgot a word."]
+        };
+        var step3Questions = {
+            short: ["Will it rain tomorrow?","Is this the right way?","Do you think he'll come?","Is she angry?","Can we finish today?"],
+            combo: ["What's the best time to practice?","How can I remember new words?","Is grammar important?","Will I ever speak fluently?","Should I study alone?"],
+            long: ["Why am I not improving?","What's the problem with my pronunciation?","How can I stop being nervous?","Why do I forget words under pressure?","What's the real secret to fluency?"]
+        };
+        var step4Questions = {
+            short: ["Finish a call with a friend.","See an old friend but you're in a hurry.","End a short chat at work.","Finish a video call with family.","Leave a party quickly."],
+            combo: ["Finish coffee with a friend.","End a study session.","Meet someone after a long time.","Finish a group project.","Say goodbye to a neighbor."],
+            long: ["Had a deep conversation.","Finished a therapy session.","Moving to another city soon.","Haven't seen someone for years.","Want to keep the friendship alive."]
+        };
+        var step5Questions = {
+            short: ["Someone asks: 'How are you?'","You see something shocking.","Someone asks if you need help.","You're too tired to explain.","You're speechless after bad news."],
+            combo: ["Failed an exam after studying hard.","Someone tells an unbelievable story.","Offered food but you're full.","See something so funny you can't speak.","Someone asks if you're okay after a small accident."],
+            long: ["Frustrated with a problem you can't solve.","Happy but don't want to explain why.","Overwhelmed with emotions.","Someone keeps asking if you're okay and you are.","Want to end small talk politely."]
+        };
+        var step6Questions = {
+            short: ["Someone looks sad.","Someone is late without reason.","See a friend after a long time.","Someone seems angry.","Hear unexpected news."],
+            combo: ["Friend canceled plans without explaining.","Someone is suddenly very happy.","You see someone crying.","A coworker is leaving early.","Your friend looks tired but won't say why."],
+            long: ["Someone has been avoiding you for days.","Notice a big change in behavior.","Friend sounds strange on the phone.","Someone is unusually quiet.","Want to start a deep conversation gently."]
+        };
+
+        var steps = [
+            { name: "Step 1 · Fast Reactions", phrases: ["I feel you", "That hits different"], teacherNote: "وقتی کسی از مشکل یا احساس سختی حرف می‌زند، «I feel you» یعنی حس تو را می‌فهمم. «That hits different» یعنی این عمیقاً تأثیر می‌گذارد.", samples: ["I feel you.", "I feel you. It's really hard.", "I feel you. Last week I couldn't remember anything either."], questions: step1Questions },
+            { name: "Step 2 · Natural Fillers", phrases: ["I mean", "Actually"], teacherNote: "فیلرها به تو زمان فکر می‌دهند. I mean برای اصلاح جمله. Actually برای تصحیح یا اضافه کردن نکته.", samples: ["I mean...", "Actually, I don't know.", "Actually, what I'm trying to say is that I need more time."], questions: step2Questions },
+            { name: "Step 3 · Softening", phrases: ["Maybe"], teacherNote: "Maybe نظرت را نرم می‌کند. برای پیشنهاد یا حدس زدن عالی است.", samples: ["Maybe.", "Maybe we can try later.", "Maybe the problem is that you're not practicing every day."], questions: step3Questions },
+            { name: "Step 4 · Ending", phrases: ["Let's catch up soon"], teacherNote: "یعنی بیا زودتر دوباره ببینمت. برای پایان دادن به مکالمه با دوستان.", samples: ["Let's catch up soon.", "Let's catch up soon. Maybe next weekend?", "Let's catch up soon. I really enjoyed talking to you."], questions: step4Questions },
+            { name: "Step 5 · Strong Emotions", phrases: ["I can't even", "I'm good"], teacherNote: "I can't even برای شوک یا احساس شدید. I'm good برای رد کمک یا نشان دادن حال خوب.", samples: ["I can't even.", "I can't even. Wow.", "I can't even. That was shocking."], questions: step5Questions },
+            { name: "Step 6 · Asking Questions", phrases: ["How come?", "What's up?"], teacherNote: "How come جای Why در مکالمه غیررسمی. What's up برای احوالپرسی یا پرسیدن از وضعیت.", samples: ["How come?", "How come you're so quiet?", "What's up? You seem different today."], questions: step6Questions }
+        ];
+
+        var currentStep = 0;
+        var selectedQuestion = { text: "", sectionType: "", sample: "" };
+        
+        // تایمر
+        var timerInterval = null;
+        var totalSeconds = 1800;
+        var timerDisplay = document.getElementById('timerDisplay');
+        var minutesInput = document.getElementById('timerMinutes');
+        
+        function updateTimerDisplay() {
+            var mins = Math.floor(totalSeconds / 60);
+            var secs = totalSeconds % 60;
+            timerDisplay.textContent = (mins < 10 ? '0' : '') + mins + ':' + (secs < 10 ? '0' : '') + secs;
+        }
+        
+        function setTimer() {
+            var mins = parseInt(minutesInput.value);
+            if(isNaN(mins) || mins < 1) mins = 30;
+            totalSeconds = mins * 60;
+            updateTimerDisplay();
+            if(timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+        }
+        
+        function startTimer() {
+            if(timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(function() {
+                if(totalSeconds <= 1) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    alert("⏰ زمان تمرین به پایان رسید!");
+                    totalSeconds = 0;
+                    updateTimerDisplay();
+                } else {
+                    totalSeconds--;
+                    updateTimerDisplay();
+                }
+            }, 1000);
+        }
+        
+        function pauseTimer() {
+            if(timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+        }
+        
+        function resetTimer() {
+            if(timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+            var mins = parseInt(minutesInput.value);
+            if(isNaN(mins) || mins < 1) mins = 30;
+            totalSeconds = mins * 60;
+            updateTimerDisplay();
+        }
+        
+        document.getElementById('timerSetBtn').onclick = setTimer;
+        document.getElementById('timerStartBtn').onclick = startTimer;
+        document.getElementById('timerPauseBtn').onclick = pauseTimer;
+        document.getElementById('timerResetBtn').onclick = resetTimer;
+        setTimer();
+        
+        // ضبط صدا
+        var mediaRecorderObj = null;
+        var audioChunksList = [];
+        var recordingActive = false;
+        var currentStream = null;
+        
+        var recordStartBtn = document.getElementById('recordStartBtn');
+        var recordStopBtn = document.getElementById('recordStopBtn');
+        var recordPlayBtn = document.getElementById('recordPlayBtn');
+        var audioPlayer = document.getElementById('audioPlayer');
+        var recordStatusSpan = document.getElementById('recordStatus');
+        
+        function renderNav() {
+            var navDiv = document.getElementById('navSteps');
+            var html = '';
+            for(var i=0; i<steps.length; i++) {
+                html += '<button class="nav-btn ' + (i === currentStep ? 'active' : '') + '" data-idx="' + i + '">' + steps[i].name + '</button>';
+            }
+            navDiv.innerHTML = html;
+            var btns = document.querySelectorAll('.nav-btn');
+            for(var j=0; j<btns.length; j++) {
+                btns[j].onclick = (function(idx) {
+                    return function() { currentStep = idx; renderNav(); renderStep(); selectedQuestion = { text: "", sectionType: "", sample: "" }; document.getElementById('selectedTrack').innerHTML = "🎯 روی هر سوال کلیک کن"; document.body.classList.remove('blur-text'); audioPlayer.style.display = 'none'; };
+                })(parseInt(btns[j].dataset.idx));
+            }
+        }
+        
+        function renderStep() {
+            var step = steps[currentStep];
+            var types = [
+                { key: "short", title: "⚡ پاسخ کوتاه", desc: "فقط عبارت را بگو", sampleIdx: 0 },
+                { key: "combo", title: "🎯 پاسخ ترکیبی", desc: "عبارت + جمله کوتاه", sampleIdx: 1 },
+                { key: "long", title: "🧠 پاسخ گسترده", desc: "عبارت + تجربه شخصی", sampleIdx: 2 }
+            ];
+            var html = '<div class="step-card"><div class="step-name">' + step.name + '</div><div class="step-phrases">';
+            for(var p=0; p<step.phrases.length; p++) {
+                html += '<span class="phrase-badge">💬 ' + step.phrases[p] + '</span>';
+            }
+            html += '</div><div class="teacher-box"><div style="font-size:0.7rem;color:#A87CFF">👩‍🏫 راهنمایی معلم:</div><div style="font-size:0.85rem">' + step.teacherNote + '</div></div>';
+            
+            for(var t=0; t<types.length; t++) {
+                var type = types[t];
+                var questions = step.questions[type.key];
+                if(!questions) continue;
+                html += '<div class="section"><div class="section-header"><div class="section-title">' + type.title + '</div></div><div class="section-desc">📌 ' + type.desc + ' | نمونه: «' + step.samples[type.sampleIdx] + '»</div>';
+                for(var q=0; q<questions.length; q++) {
+                    var qText = questions[q];
+                    var safeQ = qText.replace(/"/g, '&quot;');
+                    html += '<div class="q-item" data-question="' + safeQ + '" data-section="' + type.title + '" data-sample="' + step.samples[type.sampleIdx].replace(/"/g, '&quot;') + '">';
+                    html += '<div class="q-header"><span class="q-num">#' + (q+1).toString().padStart(2,'0') + '</span><span class="q-badge">' + type.title + '</span>';
+                    html += '<button class="audio-icon" data-read="' + safeQ + '">🔊</button></div>';
+                    html += '<div class="q-text">' + qText + '</div>';
+                    html += '<div class="sample-answer">📖 نمونه جواب: ' + step.samples[type.sampleIdx] + '</div></div>';
+                }
+                html += '</div>';
+            }
+            html += '</div>';
+            document.getElementById('stepContent').innerHTML = html;
+            
+            var items = document.querySelectorAll('.q-item');
+            for(var i=0; i<items.length; i++) {
+                items[i].onclick = function(e) {
+                    if(e.target.classList.contains('audio-icon')) return;
+                    var allItems = document.querySelectorAll('.q-item');
+                    for(var a=0; a<allItems.length; a++) allItems[a].classList.remove('selected');
+                    this.classList.add('selected');
+                    selectedQuestion = {
+                        text: this.dataset.question,
+                        sectionType: this.dataset.section,
+                        sample: this.dataset.sample
+                    };
+                    document.getElementById('selectedTrack').innerHTML = '✅ ' + selectedQuestion.text.substring(0,70) + ' | ' + selectedQuestion.sectionType + ' | نمونه: ' + selectedQuestion.sample;
+                    document.body.classList.remove('blur-text');
+                    audioPlayer.style.display = 'none';
+                };
+                var audioIcon = items[i].querySelector('.audio-icon');
+                if(audioIcon) {
+                    audioIcon.onclick = function(e) {
+                        e.stopPropagation();
+                        var textToRead = this.dataset.read;
+                        var utterance = new SpeechSynthesisUtterance(textToRead);
+                        utterance.lang = 'en-US';
+                        utterance.rate = 0.85;
+                        window.speechSynthesis.cancel();
+                        window.speechSynthesis.speak(utterance);
+                    };
+                }
+            }
+        }
+        
+        async function startRecordingFunc() {
+            if(!selectedQuestion.text) {
+                recordStatusSpan.innerHTML = '⚠️ ابتدا روی یک سوال کلیک کن';
+                return;
+            }
+            if(recordingActive) return;
+            document.body.classList.add('blur-text');
+            audioChunksList = [];
+            try {
+                var stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                currentStream = stream;
+                mediaRecorderObj = new MediaRecorder(stream);
+                mediaRecorderObj.ondataavailable = function(e) { if(e.data.size > 0) audioChunksList.push(e.data); };
+                mediaRecorderObj.onstop = function() {
+                    var blob = new Blob(audioChunksList, { type: 'audio/webm' });
+                    var url = URL.createObjectURL(blob);
+                    audioPlayer.src = url;
+                    audioPlayer.style.display = 'block';
+                    recordPlayBtn.disabled = false;
+                    recordStatusSpan.innerHTML = '✅ ضبط شد. پخش کن و مقایسه کن.';
+                    if(currentStream) currentStream.getTracks().forEach(function(t) { t.stop(); });
+                    recordingActive = false;
+                    recordStartBtn.disabled = false;
+                    recordStopBtn.disabled = true;
+                    document.body.classList.remove('blur-text');
+                };
+                mediaRecorderObj.start();
+                recordingActive = true;
+                recordStartBtn.disabled = true;
+                recordStopBtn.disabled = false;
+                recordStatusSpan.innerHTML = '🔴 در حال ضبط... (سوال مخفی شد)';
+            } catch(err) {
+                recordStatusSpan.innerHTML = '❌ دسترسی به میکروفون داده نشد';
+                document.body.classList.remove('blur-text');
+            }
+        }
+        
+        function stopRecordingFunc() {
+            if(mediaRecorderObj && recordingActive && mediaRecorderObj.state !== 'inactive') {
+                mediaRecorderObj.stop();
+            }
+        }
+        
+        function playRecordingFunc() {
+            if(audioPlayer.src) audioPlayer.play();
+        }
+        
+        recordStartBtn.onclick = startRecordingFunc;
+        recordStopBtn.onclick = stopRecordingFunc;
+        recordPlayBtn.onclick = playRecordingFunc;
+        
+        renderNav();
+        renderStep();
+    })();
+</script>
+</body>
+</html>
