@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>جزوه 07 · BLB-LLB-LC-CHLITE · ۱۰ عبارت جدید</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0A0818;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #F0EEFC;
+            padding: 2rem 1rem;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header {
+            border-bottom: 2px solid #A87CFF;
+            padding-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .doc-number {
+            font-size: 0.7rem;
+            color: #FFD966;
+            background: rgba(255,217,102,0.1);
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 2rem;
+        }
+        .title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFF, #A87CFF);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-top: 0.5rem;
+        }
+        .sub {
+            font-size: 0.8rem;
+            color: #B0ABD4;
+            margin-top: 0.3rem;
+        }
+
+        .timer-card {
+            background: #16142E;
+            border: 1px solid #2A2748;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .timer-display {
+            font-family: monospace;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #FFD966;
+        }
+        .timer-controls {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .timer-input {
+            background: #0A0818;
+            border: 1px solid #2A2748;
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 1rem;
+            width: 70px;
+            text-align: center;
+        }
+        .timer-btn {
+            background: #A87CFF;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 1.5rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+            color: #0A0818;
+            font-weight: 600;
+        }
+        .timer-outline {
+            background: transparent;
+            border: 1px solid #A87CFF;
+            color: #A87CFF;
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            background: #16142E;
+            padding: 0.6rem 1rem;
+            border-radius: 3rem;
+        }
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: #B0ABD4;
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .nav-btn.active {
+            background: #A87CFF;
+            color: #0A0818;
+            font-weight: 700;
+        }
+
+        .step-card {
+            background: #16142E;
+            border: 1px solid #2A2748;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .step-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .phrases-row {
+            margin: 0.8rem 0 1.2rem 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #2A2748;
+        }
+        .phrase-badge {
+            background: rgba(168,124,255,0.2);
+            padding: 0.3rem 1rem;
+            border-radius: 2rem;
+            display: inline-block;
+            margin-left: 0.8rem;
+            margin-bottom: 0.4rem;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .teacher-full {
+            background: rgba(168,124,255,0.08);
+            border-right: 4px solid #A87CFF;
+            padding: 1.2rem;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .teacher-title {
+            font-size: 0.7rem;
+            color: #A87CFF;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        .teacher-text {
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        .example-live {
+            background: rgba(255,217,102,0.08);
+            padding: 0.8rem;
+            border-radius: 0.8rem;
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            border-left: 3px solid #FFD966;
+        }
+
+        .section {
+            margin-top: 1.8rem;
+        }
+        .section-header {
+            border-bottom: 1px solid #2A2748;
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: baseline;
+        }
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .section-desc {
+            font-size: 0.7rem;
+            color: #FFD966;
+            margin-bottom: 0.8rem;
+            margin-right: 1rem;
+        }
+        .q-item {
+            background: rgba(255,255,255,0.02);
+            padding: 0.9rem;
+            border-radius: 1rem;
+            margin-bottom: 0.7rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .q-item:hover {
+            border-color: #A87CFF;
+            background: rgba(168,124,255,0.05);
+        }
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.4rem;
+        }
+        .q-num {
+            font-size: 0.65rem;
+            color: #A87CFF;
+        }
+        .q-badge {
+            font-size: 0.6rem;
+            background: rgba(168,124,255,0.2);
+            padding: 0.2rem 0.6rem;
+            border-radius: 1rem;
+        }
+        .q-text {
+            font-size: 0.85rem;
+            direction: ltr;
+            text-align: left;
+            font-family: monospace;
+            margin: 0.4rem 0;
+        }
+        .audio-icon {
+            background: none;
+            border: none;
+            color: #B0ABD4;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .sample-box {
+            font-size: 0.7rem;
+            color: #5CD97A;
+            margin-top: 0.5rem;
+            padding-top: 0.4rem;
+            border-top: 1px dashed #2A2748;
+            display: none;
+        }
+        .q-item.selected .sample-box {
+            display: block;
+        }
+
+        .recorder-panel {
+            background: #16142E;
+            border: 1px solid #2A2748;
+            border-radius: 1.5rem;
+            padding: 1.2rem;
+            position: sticky;
+            bottom: 0.5rem;
+            backdrop-filter: blur(12px);
+        }
+        .selected-info {
+            font-size: 0.75rem;
+            color: #FFD966;
+            margin-bottom: 0.8rem;
+        }
+        .button-group {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
+        .btn {
+            background: #A87CFF;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #0A0818;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #A87CFF;
+            color: #A87CFF;
+        }
+        .status-text {
+            font-size: 0.65rem;
+            color: #B0ABD4;
+        }
+        audio {
+            width: 100%;
+            margin-top: 0.5rem;
+            border-radius: 1rem;
+        }
+        .blur-mode .q-text {
+            filter: blur(5px);
+            user-select: none;
+        }
+        .footer-note {
+            text-align: center;
+            font-size: 0.6rem;
+            color: #B0ABD4;
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid #2A2748;
+        }
+        @media (max-width: 650px) {
+            .step-card { padding: 1rem; }
+            .q-text { font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="doc-number">📘 BLB-LLB-LC-CHLITE-07</div>
+        <div class="title">جزوه آموزشی · ۱۰ عبارت جدید · سری هفتم</div>
+        <div class="sub">۶ استپ · توضیح کامل معلم · ۳ سطح پاسخ · تایمر · ضبط صدا</div>
+    </div>
+
+    <div class="timer-card">
+        <div class="timer-display" id="timerDisplay">30:00</div>
+        <div class="timer-controls">
+            <input type="number" id="timerMinutes" class="timer-input" value="30" min="1" max="180" step="5">
+            <button id="timerSetBtn" class="timer-btn">تنظیم</button>
+            <button id="timerStartBtn" class="timer-btn">شروع</button>
+            <button id="timerPauseBtn" class="timer-btn timer-outline">توقف</button>
+            <button id="timerResetBtn" class="timer-btn timer-outline">ریست</button>
+        </div>
+    </div>
+
+    <div class="nav" id="navSteps"></div>
+    <div id="stepContent"></div>
+
+    <div class="recorder-panel">
+        <div class="selected-info" id="selectedInfo">🎯 روی هر سوال کلیک کن — راهنمای کامل و نمونه جواب نشان داده می‌شود</div>
+        <div class="button-group">
+            <button class="btn" id="recordStart">🎙 شروع ضبط (جواب بده)</button>
+            <button class="btn btn-outline" id="recordStop" disabled>⏹ توقف</button>
+            <button class="btn btn-outline" id="recordPlay" disabled>🔊 پخش صدای من</button>
+        </div>
+        <div class="status-text" id="recordStatus"></div>
+        <audio id="audioPlayer" controls style="display:none;"></audio>
+        <div class="footer-note">📖 روش تمرین: سوال را بخوان ← کلیک کن (نمونه جواب نشان داده می‌شود) ← ضبط را بزن ← با صدای بلند جواب بده ← صدایت را با نمونه مقایسه کن</div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // ========================== داده‌های کامل ۶ استپ جزوه 07 ==========================
+        const stepsData = [
+            {
+                name: "Step 1 · Fast Reactions",
+                phrases: ["Right?!", "No kidding"],
+                teacherLong: "دو واکنش سریع برای ابراز موافقت شدید و تأکید. «Right?!» یعنی «درسته؟! / نه؟!» — کوتاه‌تر و محاوره‌ای‌تر از «I know, right?». نشان می‌دهد که کاملاً موافقی و تعجب داری که دیگران هم همین نظر را دارند. «No kidding» یعنی «نه شوخی / واقعاً؟» — زمانی استفاده می‌شود که چیزی واضح است یا تو از قبل می‌دانستی. تفاوت: Right?! برای موافقت، No kidding برای تأکید بر واضح بودن یک موضوع.",
+                examples: "مثال زنده: دوستت می‌گوید «این غذا فوق‌العاده است»: Right?! It's amazing. کسی می‌گوید «امتحان سخت بود»: No kidding! I studied for hours.",
+                samples: ["Right?!", "Right?! That's what I've been saying.", "No kidding.", "No kidding. Tell me something I don't know."],
+                questions: {
+                    short: ["Someone says: 'This is the best pizza ever.'","Your friend says: 'That movie was boring.'","Someone says: 'The traffic is horrible.'","Your friend says: 'I'm so tired.'","Someone says: 'That test was impossible.'"],
+                    combo: ["Someone says: 'This weather is crazy.'","Your friend says: 'I can't believe he did that.'","Someone says: 'The prices are going up again.'","Your friend says: 'This homework is too much.'","Someone says: 'Nobody listens anymore.'"],
+                    long: ["Someone says: 'Learning English takes years of practice.'","Your friend says: 'It's harder to make friends as an adult.'","Someone says: 'Social media is a waste of time.'","Your friend says: 'The best things in life are free.'","Someone says: 'Patience is the key to success.'"]
+                }
+            },
+            {
+                name: "Step 2 · Natural Fillers",
+                phrases: ["Okay", "Umm"],
+                teacherLong: "دو فیلر پایه‌ای و جهانی. «Okay» یعنی «باشه / خوب» — برای شروع جمله، تغییر موضوع، یا نشان دادن پذیرش. خیلی خنثی و امن است. «Umm» یعنی «اممم» — صدای مکث هنگام فکر کردن. نشان می‌دهد که داری به چیزی فکر می‌کنی و برای طرف مقابل طبیعی است. تفاوت: Okay علامت آمادگی یا پذیرش است، Umm علامت مکث ذهنی است.",
+                examples: "مثال زنده: شروع توضیح: Okay, let me explain. مکث برای فکر کردن: Umm... I'm not sure. پذیرش: Okay, I'll do it.",
+                samples: ["Okay...", "Okay, let's start.", "Umm...", "Umm, let me think about that."],
+                questions: {
+                    short: ["Start explaining something.","Show you agree to do something.","Pause to think.","Change the subject.","Show you understand."],
+                    combo: ["Start a difficult conversation.","Agree to a request reluctantly.","Pause to find the right word.","Transition to a new topic.","Show you're processing information."],
+                    long: ["Start a presentation or explanation.","Agree to something you're not sure about.","Pause during a story to remember details.","Change from small talk to a serious topic.","Show you're listening and thinking about what was said."]
+                }
+            },
+            {
+                name: "Step 3 · Softening",
+                phrases: ["It seems", "Apparently"],
+                teacherLong: "دو نرم‌کننده برای اشاره به اطلاعات غیرمستقیم یا ناقص. «It seems» یعنی «به نظر می‌رسد / انگار که» — بر اساس شواهد ظاهری، نه دانش قطعی. «Apparently» یعنی «ظاهراً / طبق گفته‌ها» — اطلاعاتی که از دیگران شنیده‌ای، نه خودت تجربه کرده‌ای. تفاوت: It seems از مشاهده مستقیم می‌آید، Apparently از شنیده‌ها و شایعات. هر دو مسئولیت را از تو دور می‌کنند.",
+                examples: "مثال زنده: مشاهده: It seems like it's going to rain. شنیده: Apparently, they're getting married.",
+                samples: ["It seems...", "It seems like a good idea.", "Apparently...", "Apparently, that's not true."],
+                questions: {
+                    short: ["Based on what you see, it might rain.","Based on what you heard, someone is moving.","Something looks difficult.","Someone told you a rumor.","Something appears to be broken."],
+                    combo: ["You see dark clouds outside.","You heard through a friend that someone got a new job.","Someone looks sad but you're not sure why.","People are saying a store is closing.","The sky is red in the evening."],
+                    long: ["You notice someone's behavior changed but don't know why.","You heard conflicting information about a news story.","Something seems wrong with a machine but you're not an expert.","Apparently, a famous person did something surprising.","It seems like a situation is getting worse, but you're not inside it."]
+                }
+            },
+            {
+                name: "Step 4 · Ending",
+                phrases: ["It's been great chatting", "Catch you later"],
+                teacherLong: "دو روش گرم و دوستانه برای پایان دادن به مکالمه. «It's been great chatting» یعنی «از صحبت کردن لذت بردم» — برای مکالمه‌های طولانی یا موقعیت‌های نیمه‌رسمی. «Catch you later» یعنی «بعداً می‌بینمت / بعداً حرف می‌زنیم» — خیلی غیررسمی و کوتاه، برای دوستان صمیمی. تفاوت: اولی گرم و مودبانه است، دومی سریع و دوستانه.",
+                examples: "مثال زنده: پایان چت آنلاین: It's been great chatting. Talk soon. خداحافظی با دوست: Catch you later, man.",
+                samples: ["It's been great chatting.", "It's been great chatting with you.", "Catch you later.", "Catch you later. Take care."],
+                questions: {
+                    short: ["End an online chat.","Finish a phone call with a friend.","Leave a group conversation.","Say goodbye to a coworker.","End a casual meetup."],
+                    combo: ["You had a long and meaningful conversation.","You're leaving a party with friends.","You finished a video call with a close friend.","You're ending a chat with someone you rarely talk to.","You're saying goodbye at the end of a hangout."],
+                    long: ["You reconnected with an old friend online.","You're leaving a gathering where you had good conversations.","You finished a long catch-up call with a family member.","You're ending a chat with someone who helped you.","You're saying goodbye to someone you'll see tomorrow."]
+                }
+            },
+            {
+                name: "Step 5 · Strong Emotions",
+                phrases: ["I'm so pumped"],
+                teacherLong: "«I'm so pumped» یعنی «واقعاً هیجان‌زده‌ام / پر انرژی‌ام» — یک عبارت مثبت و پرانرژی برای ابراز هیجان و اشتیاق شدید. برای اتفاقات خوب مثل کنسرت، مسابقه، شروع یک پروژه جدید، یا هر چیز هیجان‌انگیزی. فرقش با «I'm excited»: I'm pumped خیلی قوی‌تر و غیررسمی‌تر است و حس انرژی فیزیکی هم دارد.",
+                examples: "مثال زنده: قبل از مسابقه: I'm so pumped for the game tonight. شروع سفر: I'm so pumped about our trip!",
+                samples: ["I'm so pumped!", "I'm so pumped for this.", "I'm so pumped. Let's do this!"],
+                questions: {
+                    short: ["You're about to go to a concert.","You're starting a new job.","Your favorite team is playing.","You're about to travel.","You're starting a new project."],
+                    combo: ["You've been waiting for an event for months.","You're about to try something adventurous.","Your friend is visiting after a long time.","You're starting a competition.","You're about to achieve a big goal."],
+                    long: ["You're about to do something you've dreamed of for years.","Your favorite band is playing in your city.","You're starting a new chapter of your life.","You're about to meet someone you admire.","You're preparing for a big challenge you're excited about."]
+                }
+            },
+            {
+                name: "Step 6 · Asking Questions",
+                phrases: ["What's that supposed to mean?"],
+                teacherLong: "«What's that supposed to mean?» یعنی «یعنی چه؟ / منظورتو از این چیست؟» — زمانی استفاده می‌شود که کسی حرفی زده که می‌تواند توهین‌آمیز یا مبهم باشد و تو می‌خواهی دقیقاً بفهمی منظورشان چیست. لحن می‌تواند از کنجکاوی ساده تا دفاعی و عصبانی متغیر باشد. با دوستان صمیمی یا زمانی که واقعاً احساس می‌کنی حرف طرف مقابل بی‌ادبانه بوده استفاده کن.",
+                examples: "مثال زنده: کسی می‌گوید «تو خیلی تغییر کردی»: What's that supposed to mean? Is that bad? کسی شوخی نامناسب می‌کند: What's that supposed to mean? I don't get it.",
+                samples: ["What's that supposed to mean?", "What's that supposed to mean? I don't understand.", "What's that supposed to mean? Are you trying to say something?"],
+                questions: {
+                    short: ["Someone says: 'You're different now.'","Someone says: 'Interesting choice.'","Someone says: 'Good for you.' sarcastically.","Someone says: 'That's one way to do it.'","Someone says: 'You've changed.'"],
+                    combo: ["Someone makes a vague criticism.","Someone says something that could be an insult.","Someone gives you a backhanded compliment.","Someone implies you did something wrong without saying it.","Someone says 'No offense' before saying something offensive."],
+                    long: ["Someone in a meeting makes a comment that seems directed at you.","A friend says something hurtful but tries to play it off as a joke.","Someone gives you advice that sounds like criticism.","A colleague says something ambiguous about your work.","Someone mentions a rumor without directly accusing you."]
+                }
+            }
+        ];
+
+        let currentStep = 0;
+        let selectedQ = { text: "", sectionName: "", sample: "" };
+        
+        // تایمر
+        let timerInterval = null;
+        let totalSecs = 1800;
+        const timerDisplay = document.getElementById('timerDisplay');
+        const minutesInput = document.getElementById('timerMinutes');
+        function updateTimer() {
+            let m = Math.floor(totalSecs / 60);
+            let s = totalSecs % 60;
+            timerDisplay.textContent = (m<10?'0':'') + m + ':' + (s<10?'0':'') + s;
+        }
+        function setTimer() { let m = parseInt(minutesInput.value) || 30; totalSecs = m * 60; updateTimer(); if(timerInterval){clearInterval(timerInterval); timerInterval=null;} }
+        function startTimer() { if(timerInterval) clearInterval(timerInterval); timerInterval = setInterval(() => { if(totalSecs<=1){ clearInterval(timerInterval); alert("⏰ زمان تمرین تمام شد!"); totalSecs=0; updateTimer(); } else { totalSecs--; updateTimer(); } }, 1000); }
+        function pauseTimer() { if(timerInterval){ clearInterval(timerInterval); timerInterval=null; } }
+        function resetTimer() { if(timerInterval){ clearInterval(timerInterval); timerInterval=null; } let m = parseInt(minutesInput.value) || 30; totalSecs = m * 60; updateTimer(); }
+        document.getElementById('timerSetBtn').onclick = setTimer;
+        document.getElementById('timerStartBtn').onclick = startTimer;
+        document.getElementById('timerPauseBtn').onclick = pauseTimer;
+        document.getElementById('timerResetBtn').onclick = resetTimer;
+        setTimer();
+
+        // ضبط صدا
+        let mediaRec = null;
+        let audioPieces = [];
+        let isRec = false;
+        let streamObj = null;
+        const startRec = document.getElementById('recordStart');
+        const stopRec = document.getElementById('recordStop');
+        const playRec = document.getElementById('recordPlay');
+        const audioElem = document.getElementById('audioPlayer');
+        const recStatus = document.getElementById('recordStatus');
+
+        function renderNav() {
+            const navDiv = document.getElementById('navSteps');
+            navDiv.innerHTML = stepsData.map((s, i) => `<button class="nav-btn ${i===currentStep?'active':''}" data-idx="${i}">${s.name}</button>`).join('');
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.onclick = () => { currentStep = parseInt(btn.dataset.idx); renderNav(); renderStep(); selectedQ = { text: "", sectionName: "", sample: "" }; document.getElementById('selectedInfo').innerHTML = "🎯 روی هر سوال کلیک کن"; document.body.classList.remove('blur-mode'); audioElem.style.display = 'none'; };
+            });
+        }
+
+        function renderStep() {
+            const step = stepsData[currentStep];
+            const sections = [
+                { key: "short", title: "⚡ پاسخ کوتاه", desc: "فقط همان عبارت را بگو. بدون توضیح اضافه. هدف: واکنش در نیم ثانیه.", sampleIdx: 0 },
+                { key: "combo", title: "🎯 پاسخ ترکیبی", desc: "عبارت + یک جمله کوتاه (۳ تا ۱۰ کلمه). عبارت را ثابت نگه دار، جمله را تغییر بده.", sampleIdx: 1 },
+                { key: "long", title: "🧠 پاسخ گسترده", desc: "عبارت + تجربه شخصی یا توضیح کامل. مغزت را مجبور به اتصال به زندگی واقعی کن.", sampleIdx: 2 }
+            ];
+            let html = `
+                <div class="step-card">
+                    <div class="step-name">${step.name}</div>
+                    <div class="phrases-row">${step.phrases.map(p => `<span class="phrase-badge">💬 ${p}</span>`).join('')}</div>
+                    <div class="teacher-full">
+                        <div class="teacher-title">👩‍🏫 توضیح کامل معلم (قبل از تمرین بخوان)</div>
+                        <div class="teacher-text">${step.teacherLong}</div>
+                        <div class="example-live">📖 مثال زنده: ${step.examples || step.samples[1]}</div>
+                    </div>
+            `;
+            for(let sec of sections) {
+                const qs = step.questions[sec.key];
+                if(!qs) continue;
+                html += `
+                    <div class="section">
+                        <div class="section-header">
+                            <div class="section-title">${sec.title}</div>
+                        </div>
+                        <div class="section-desc">📌 ${sec.desc} | نمونه: «${step.samples[sec.sampleIdx]}»</div>
+                `;
+                for(let i=0; i<qs.length; i++) {
+                    let q = qs[i];
+                    let safeQ = q.replace(/"/g, '&quot;');
+                    html += `
+                        <div class="q-item" data-q="${safeQ}" data-section="${sec.title}" data-sample="${step.samples[sec.sampleIdx].replace(/"/g, '&quot;')}">
+                            <div class="q-header">
+                                <span class="q-num">#${(i+1).toString().padStart(2,'0')}</span>
+                                <span class="q-badge">${sec.title}</span>
+                                <button class="audio-icon" data-read="${safeQ}">🔊</button>
+                            </div>
+                            <div class="q-text">${q}</div>
+                            <div class="sample-box">📖 نمونه جواب کامل: ${step.samples[sec.sampleIdx]}</div>
+                        </div>
+                    `;
+                }
+                html += `</div>`;
+            }
+            html += `</div>`;
+            document.getElementById('stepContent').innerHTML = html;
+
+            document.querySelectorAll('.q-item').forEach(item => {
+                item.onclick = (e) => {
+                    if(e.target.classList.contains('audio-icon')) return;
+                    document.querySelectorAll('.q-item').forEach(el => el.classList.remove('selected'));
+                    item.classList.add('selected');
+                    selectedQ = {
+                        text: item.dataset.q,
+                        sectionName: item.dataset.section,
+                        sample: item.dataset.sample
+                    };
+                    document.getElementById('selectedInfo').innerHTML = `✅ ${selectedQ.text.substring(0,70)} | ${selectedQ.sectionName} | نمونه: ${selectedQ.sample}`;
+                    document.body.classList.remove('blur-mode');
+                    audioElem.style.display = 'none';
+                };
+                const audioBtn = item.querySelector('.audio-icon');
+                if(audioBtn) {
+                    audioBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        let utter = new SpeechSynthesisUtterance(audioBtn.dataset.read);
+                        utter.lang = 'en-US';
+                        utter.rate = 0.85;
+                        window.speechSynthesis.cancel();
+                        window.speechSynthesis.speak(utter);
+                    };
+                }
+            });
+        }
+
+        async function startRecording() {
+            if(!selectedQ.text) { recStatus.innerHTML = '⚠️ ابتدا روی یک سوال کلیک کن'; return; }
+            if(isRec) return;
+            document.body.classList.add('blur-mode');
+            audioPieces = [];
+            try {
+                let stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                streamObj = stream;
+                mediaRec = new MediaRecorder(stream);
+                mediaRec.ondataavailable = (e) => { if(e.data.size > 0) audioPieces.push(e.data); };
+                mediaRec.onstop = () => {
+                    let blob = new Blob(audioPieces, { type: 'audio/webm' });
+                    audioElem.src = URL.createObjectURL(blob);
+                    audioElem.style.display = 'block';
+                    playRec.disabled = false;
+                    recStatus.innerHTML = '✅ ضبط شد. پخش کن و با نمونه جواب مقایسه کن.';
+                    if(streamObj) streamObj.getTracks().forEach(t => t.stop());
+                    isRec = false;
+                    startRec.disabled = false;
+                    stopRec.disabled = true;
+                    document.body.classList.remove('blur-mode');
+                };
+                mediaRec.start();
+                isRec = true;
+                startRec.disabled = true;
+                stopRec.disabled = false;
+                recStatus.innerHTML = '🔴 در حال ضبط جواب تو... (سوال مخفی شد)';
+            } catch(err) {
+                recStatus.innerHTML = '❌ اجازه دسترسی به میکروفون داده نشد';
+                document.body.classList.remove('blur-mode');
+            }
+        }
+        function stopRecording() { if(mediaRec && isRec && mediaRec.state !== 'inactive') mediaRec.stop(); }
+        function playRecording() { if(audioElem.src) audioElem.play(); }
+
+        startRec.onclick = startRecording;
+        stopRec.onclick = stopRecording;
+        playRec.onclick = playRecording;
+
+        renderNav();
+        renderStep();
+    })();
+</script>
+</body>
+</html>
