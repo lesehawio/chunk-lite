@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>جزوه حرفه‌ای · BLB-LLB-LC-CHLITE-01 · نهادینه‌سازی ۶ استپ مکالمه</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0C0A1A;
+            --bg-secondary: #12102A;
+            --card-bg: #181634;
+            --border-subtle: #2A274A;
+            --text-primary: #F0EFFC;
+            --text-secondary: #B4B0DA;
+            --accent-gold: #FFD966;
+            --accent-purple: #A67CFF;
+            --accent-purple-dark: #7C52D9;
+            --danger: #FF7A5C;
+            --success: #5CD97A;
+        }
+
+        body {
+            background: var(--bg-primary);
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+
+        .document {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* هدر حرفه‌ای شبیه سند رسمی */
+        .document-header {
+            border-bottom: 3px double var(--accent-purple);
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .doc-id {
+            font-family: monospace;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            color: var(--accent-gold);
+            background: rgba(255, 217, 102, 0.1);
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 2rem;
+        }
+        .doc-title {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF, var(--accent-purple));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .doc-version {
+            text-align: left;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        /* ناوبری حرفه‌ای */
+        .nav-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+            background: var(--bg-secondary);
+            padding: 0.8rem 1.2rem;
+            border-radius: 3rem;
+            backdrop-filter: blur(8px);
+        }
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 0.5rem 1.2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.3px;
+        }
+        .nav-btn.active {
+            background: var(--accent-purple);
+            color: #0C0A1A;
+            box-shadow: 0 0 12px rgba(166, 124, 255, 0.4);
+        }
+        .nav-btn:hover:not(.active) {
+            background: rgba(166, 124, 255, 0.2);
+            color: white;
+        }
+
+        /* کارت اصلی استپ */
+        .step-master-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-subtle);
+            border-radius: 2rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.4);
+        }
+        .step-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            border-bottom: 1px dashed var(--border-subtle);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .step-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .step-type {
+            background: var(--accent-purple-dark);
+            padding: 0.2rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        /* بلاک‌های آموزشی */
+        .method-box {
+            background: rgba(90, 60, 160, 0.15);
+            border-right: 4px solid var(--accent-purple);
+            padding: 1.2rem;
+            border-radius: 1rem;
+            margin: 1.2rem 0;
+        }
+        .neuro-box {
+            background: rgba(255, 217, 102, 0.08);
+            border-right: 4px solid var(--accent-gold);
+            padding: 1.2rem;
+            border-radius: 1rem;
+            margin: 1.2rem 0;
+        }
+        .section-title-small {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        /* جدول سوالات (طراحی حرفه‌ای) */
+        .questions-table {
+            margin-top: 2rem;
+        }
+        .q-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-subtle);
+            transition: 0.1s;
+            cursor: pointer;
+        }
+        .q-row:hover {
+            background: rgba(166, 124, 255, 0.08);
+            border-radius: 1rem;
+        }
+        .q-number {
+            min-width: 3rem;
+            font-size: 0.8rem;
+            color: var(--accent-purple);
+            font-weight: 700;
+        }
+        .q-text {
+            flex: 1;
+            font-size: 0.9rem;
+            direction: ltr;
+            text-align: left;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: -0.2px;
+        }
+        .q-audio {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+        .q-audio:hover {
+            color: var(--accent-purple);
+        }
+
+        /* بخش ضبط (حرفه‌ای) */
+        .recorder-studio {
+            background: var(--bg-secondary);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            position: sticky;
+            bottom: 1rem;
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-subtle);
+        }
+        .selected-track {
+            font-size: 0.8rem;
+            background: rgba(0,0,0,0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            margin-bottom: 1rem;
+        }
+        .button-studio {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        .btn-pro {
+            background: var(--accent-purple);
+            border: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 2.5rem;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            color: #0C0A1A;
+            transition: 0.15s;
+        }
+        .btn-outline-pro {
+            background: transparent;
+            border: 1px solid var(--accent-purple);
+            color: var(--accent-purple);
+        }
+        .status-text {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+        audio {
+            width: 100%;
+            margin-top: 0.8rem;
+            border-radius: 2rem;
+        }
+        .blur-active .q-text {
+            filter: blur(5px);
+            user-select: none;
+        }
+        hr {
+            border-color: var(--border-subtle);
+            margin: 1rem 0;
+        }
+        .footer-note {
+            text-align: center;
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 1.5rem;
+        }
+        @media (max-width: 780px) {
+            body { padding: 1rem; }
+            .step-master-card { padding: 1rem; }
+            .step-name { font-size: 1.3rem; }
+            .q-text { font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="document">
+    <div class="document-header">
+        <div>
+            <div class="doc-id">BLB-LLB-LC-CHLITE-01</div>
+            <div class="doc-title">نهادینه‌سازی ۶ استپ مکالمه</div>
+            <div style="font-size:0.75rem; margin-top:0.5rem;">روش عصبی‑شناختی · پاسخ‌دهی هدفمند · ورود به ناخودآگاه</div>
+        </div>
+        <div class="doc-version">نسخه نهایی · انتشار حرفه‌ای</div>
+    </div>
+
+    <div class="nav-steps" id="navSteps"></div>
+    <div id="stepContainer"></div>
+
+    <div class="recorder-studio" id="recorderStudio">
+        <div class="selected-track" id="selectedTrackDisplay">🎯 روی هر سوال کلیک کن — برای ضبط پاسخ انتخاب می‌شود</div>
+        <div class="button-studio">
+            <button class="btn-pro" id="recordStartBtn">🎙 شروع ضبط (پاسخ تو)</button>
+            <button class="btn-pro btn-outline-pro" id="recordStopBtn" disabled>⏹ توقف</button>
+            <button class="btn-pro btn-outline-pro" id="recordPlayBtn" disabled>🔊 پخش و مقایسه</button>
+        </div>
+        <div class="status-text" id="recordStatusMsg"></div>
+        <audio id="playerAudio" controls style="display:none;"></audio>
+        <hr>
+        <div class="footer-note">⚡ روش نهادینه‌سازی: سوال را می‌خوانی → روی آن کلیک می‌کنی → ضبط را شروع می‌کنی (سوال مخفی می‌شود) → از حفظ جواب می‌دهی → صدایت را با پاسخ ایده‌آل مقایسه می‌کنی. تکرار روزانه = ناخودآگاه‌سازی.</div>
+    </div>
+</div>
+
+<script>
+    // ---------- دیتای حرفه‌ای ۶ استپ با متد، نوروساینس و ۲۰ سوال ----------
+    const stepsData = [
+        { name: "Fast Reactions", badge: "Step 1",
+          method: "🔸 متد پاسخ‌دهی:\n• وقتی شنیدی کسی از یک مشکل تکراری یا واضح حرف می‌زند، بلافاصله «You're telling me!» یا «Tell me about it» بگو.\n• ابتدا همین عبارت را بگو، سپس اگر خواستی یک جمله کوتاه اضافه کن.\n• بدون مکث فکری — تمرین کن تا تبدیل به رفلکس کلامی شود.",
+          neuro: "🧠 چرا نهادینه می‌شود:\nمغز شما با تکرار در بافت‌های احساسی مشابه، مسیرهای عصبی سریع می‌سازد. این عبارات واکنش همدلانه را فعال می‌کنند و فشار اجتماعی صحبت کردن را کاهش می‌دهند.",
+          questions: [
+            "Someone says: 'I'm so tired today.'",
+            "Someone says: 'This lesson is impossible to understand.'",
+            "Someone says: 'I never have enough time to practice.'",
+            "Someone says: 'My memory is so bad for new words.'",
+            "Someone says: 'Speaking English makes me nervous.'",
+            "Someone says: 'I said something wrong again in front of people.'",
+            "Someone says: 'Learning English takes forever.'",
+            "Someone says: 'I keep making the same mistakes.'",
+            "Someone says: 'Nobody helps me practice speaking.'",
+            "Someone says: 'I studied but still forgot everything.'",
+            "Someone says: 'Every day feels the same.'",
+            "Someone says: 'My pronunciation is terrible.'",
+            "Someone says: 'I don't see any progress.'",
+            "Someone says: 'Listening is harder than I thought.'",
+            "Someone says: 'I freeze when someone asks me a question.'",
+            "Someone says: 'English grammar makes no sense to me.'",
+            "Someone says: 'I'm too old to learn a new language.'",
+            "Someone says: 'I don't have anyone to talk to.'",
+            "Someone says: 'I feel stupid when I speak slowly.'",
+            "Someone says: 'This method isn't working for me.'"
+          ] },
+        { name: "Natural Fillers", badge: "Step 2",
+          method: "🔸 متد پاسخ‌دهی:\n• قبل از پاسخ به هر سوالی، با «Well...» یا «You know...» شروع کن.\n• «Well...» برای مکث کوتاه و آماده شدن.\n• «You know...» برای جلب همذات‌پنداری یا اشاره به چیز بدیهی.\n• بعد از فیلر، ادامه جواب را بگو.",
+          neuro: "🧠 چرا نهادینه می‌شود:\nفیلرها به سیستم شنیداری مغز زمان تطابق می‌دهند. استفاده از آنها ریتم طبیعی گفتار را شبیه‌سازی می‌کند و اعتمادبه‌نفس کاذب را از بین می‌برد.",
+          questions: [
+            "What did you eat today?",
+            "Why do you want to learn English?",
+            "How do you feel right now?",
+            "What's the first thing you do in the morning?",
+            "Why is it hard to speak fast?",
+            "What helps you remember words?",
+            "What's something you don't like about studying?",
+            "When do you feel most confident?",
+            "What's your favorite time of the day?",
+            "Why do people forget new words easily?",
+            "What do you do when you're stuck?",
+            "Is it better to study alone or with someone?",
+            "What's one bad habit you have?",
+            "What makes a good conversation?",
+            "Why do you sometimes stop practicing?",
+            "What do you think about before sleeping?",
+            "What's something simple that makes you happy?",
+            "Why is repetition important?",
+            "What do you say when you don't know a word?",
+            "How do you know if you're improving?"
+          ] },
+        { name: "Softening", badge: "Step 3",
+          method: "🔸 متد پاسخ‌دهی:\n• اگر نسبتاً مطمئنی: «I think...»\n• اگر حدس می‌زنی یا مطمئن نیستی: «I guess...»\n• جمله را با I think یا I guess شروع کن. هرگز نظرت را بدون نرم‌کننده تحمیل نکن.",
+          neuro: "🧠 چرا نهادینه می‌شود:\nاین ساختارها فعالیت آمیگدال (مرکز ترس از قضاوت) را کاهش می‌دهند. مغز یاد می‌گیرد که بدون ترس از اشتباه، نظر بدهد.",
+          questions: [
+            "Is English easier than your own language?",
+            "Will you speak fluently one day?",
+            "Is this practice helping you?",
+            "Can someone learn English alone?",
+            "Is grammar more important than speaking?",
+            "Do you need a teacher to improve?",
+            "Is it possible to learn without mistakes?",
+            "Does watching movies help with listening?",
+            "Is it better to learn 10 words or 2 sentences a day?",
+            "Will you remember these phrases next month?",
+            "Is pronunciation or vocabulary more important?",
+            "Do people judge you when you make mistakes?",
+            "Can you learn English in 6 months?",
+            "Is it okay to speak slowly?",
+            "Does confidence come before fluency?",
+            "Is writing easier than speaking for you?",
+            "Do you need to live in an English-speaking country to learn?",
+            "Is it possible to learn without making mistakes?",
+            "Does age affect language learning?",
+            "Will you ever stop practicing?"
+          ] },
+        { name: "Ending", badge: "Step 4",
+          method: "🔸 متد پاسخ‌دهی:\n• برای تغییر موضوع یا جمع‌بندی: «Anyway...»\n• برای ترک مکان یا تماس: «I gotta run»\n• بعد از Anyway یک جمله جمع‌بندی کوتاه اضافه کن.",
+          neuro: "🧠 چرا نهادینه می‌شود:\nپایان دادن طبیعی مکالمه از نظر اجتماعی یک مهارت کلیدی است. این عبارات بدون ایجاد حس بی‌ادبی، به مغز اجازه خروج از تعامل را می‌دهند.",
+          questions: [
+            "You're talking about the weather but you're bored. What do you say?",
+            "You're on the phone and need to hang up. What do you say?",
+            "You finish studying with a friend. What do you say?",
+            "You're in the middle of a long, useless story. You want to stop. What do you say?",
+            "You remember you have to do something. What do you say before leaving?",
+            "You're practicing with me and want to stop now. What do you say?",
+            "Someone is complaining too much. You want to change the subject. What do you say?",
+            "You're at a party and want to go home. What do you say?",
+            "You're talking about something sad. You want to stop. What do you say?",
+            "You're late for something. How do you end the conversation quickly?",
+            "You're done with today's practice. What do you say to yourself?",
+            "Someone is explaining something too long. You want to politely stop them. What do you say?",
+            "You're on a break at work and need to go back. What do you say?",
+            "You finish a call with your family. What do you say?",
+            "You're tired of talking about the same problem. What do you say?",
+            "You need to end a text conversation. What do you type?",
+            "You're leaving a friend's house. What do you say?",
+            "You finish a meeting. What do you say before leaving?",
+            "You're done helping someone. What do you say to end?",
+            "You want to stop practicing one step and move to the next. What do you say?"
+          ] },
+        { name: "Strong Emotions", badge: "Step 5",
+          method: "🔸 متد پاسخ‌دهی:\n• وقتی از چیزی واقعاً خسته یا ناامید شدی، بگو: «I'm so over this»\n• با انرژی بگو (نه بی‌حالی). بعد از آن می‌توانی دلیل را هم بگویی.",
+          neuro: "🧠 چرا نهادینه می‌شود:\nبیان احساسات با جملات قالبی، شدت استرس را کاهش می‌دهد. این عبارت یک دریچه خروجی هیجانی برای مغز ایجاد می‌کند.",
+          questions: [
+            "You've been studying the same lesson for hours. What do you say?",
+            "You keep forgetting one simple word. What do you say?",
+            "Someone keeps correcting you again and again. What do you say?",
+            "You tried 5 methods and nothing worked. What do you say?",
+            "You're tired of making the same grammar mistake. What do you say?",
+            "You've been practicing for months but see no change. What do you say?",
+            "You're sick of feeling nervous when speaking. What do you say?",
+            "You're done with people telling you 'just practice more.' What do you say?",
+            "You're tired of apps, books, and videos. What do you say?",
+            "You feel like giving up today. What do you say?",
+            "You're frustrated with your own slow progress. What do you say?",
+            "You've repeated the same sentence 20 times. What do you say?",
+            "You're exhausted from overthinking every word. What do you say?",
+            "You feel stuck and nothing helps. What do you say?",
+            "You want to quit for today. What do you say before stopping?"
+          ] },
+        { name: "Asking Questions", badge: "Step 6",
+          method: "🔸 متد پاسخ‌دهی:\n• هر وقت چیزی را نفهمیدی، بپرس: «What do you mean?»\n• لحن معمولی یا کنجکاوانه، نه تهاجمی.\n• این سوال گفتگو را باز نگه می‌دارد.",
+          neuro: "🧠 چرا نهادینه می‌شود:\nپرسیدن سوال شفاف‌ساز، مدارک یادگیری را تقویت می‌کند. مغز بدون شرم از نفهمیدن، اطلاعات جدید را جذب می‌کند.",
+          questions: [
+            "Someone says: 'This method doesn't work.' You don't understand why. What do you ask?",
+            "Your friend says: 'You sound different today.' You don't understand. What do you ask?",
+            "A teacher says: 'Your accent is strong.' You're not sure if that's good or bad. What do you ask?",
+            "Someone tells you: 'You're not trying hard enough.' You're confused. What do you ask?",
+            "A video says: 'Speak from your heart.' You don't understand. What do you ask?",
+            "Someone says: 'Fluency is overrated.' You don't get it. What do you ask?",
+            "Your partner says: 'You always say \"well\" too much.' You're confused. What do you ask?",
+            "A book says: 'Don't translate in your head.' You don't understand how. What do you ask?",
+            "Someone says: 'You're thinking too much.' You're not sure what they mean. What do you ask?",
+            "Your friend says: 'This phrase is too formal.' You don't see the difference. What do you ask?",
+            "Someone says: 'You improved but not enough.' You're confused. What do you ask?",
+            "A teacher says: 'Your rhythm is wrong.' You don't understand rhythm in speaking. What do you ask?",
+            "Someone says: 'Don't memorize, feel the language.' You don't understand. What do you ask?",
+            "Your friend says: 'You sound robotic.' You're not sure what that means. What do you ask?",
+            "Someone says: 'Less grammar, more listening.' You don't understand why. What do you ask?",
+            "A video says: 'Shadowing will fix your accent.' You don't know shadowing. What do you ask?",
+            "Someone says: 'You're ready for advanced.' You feel you're not. What do you ask?",
+            "Your friend says: 'Stop practicing alone.' You're confused. What do you ask?",
+            "Someone says: 'Your brain is blocking you.' You don't understand. What do you ask?",
+            "A teacher says: 'You need more input.' You don't know what input means. What do you ask?"
+          ] }
+    ];
+
+    let activeStep = 0;
+    let selectedQuestionText = "";
+    let selectedStepIdx = 0;
+
+    // ضبط صدا
+    let mediaRecorderGlobal = null;
+    let audioPieces = [];
+    let recordingActive = false;
+    let recordedStream = null;
+
+    const navDiv = document.getElementById('navSteps');
+    const stepContainer = document.getElementById('stepContainer');
+    const selectedDisplay = document.getElementById('selectedTrackDisplay');
+    const recordStatusSpan = document.getElementById('recordStatusMsg');
+    const startRecordBtn = document.getElementById('recordStartBtn');
+    const stopRecordBtn = document.getElementById('recordStopBtn');
+    const playRecordBtn = document.getElementById('recordPlayBtn');
+    const audioPlayer = document.getElementById('playerAudio');
+
+    function renderNav() {
+        navDiv.innerHTML = stepsData.map((step, idx) => `<button class="nav-btn ${idx === activeStep ? 'active' : ''}" data-stepidx="${idx}">${step.name} · ${step.badge}</button>`).join('');
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.onclick = () => {
+                activeStep = parseInt(btn.dataset.stepidx);
+                renderNav();
+                renderStepContent(activeStep);
+                selectedQuestionText = "";
+                selectedDisplay.innerHTML = "🎯 روی هر سوال کلیک کن — برای ضبط پاسخ انتخاب می‌شود";
+                document.body.classList.remove('blur-active');
+                audioPlayer.style.display = 'none';
+            };
+        });
+    }
+
+    function renderStepContent(stepIdx) {
+        const s = stepsData[stepIdx];
+        stepContainer.innerHTML = `
+            <div class="step-master-card">
+                <div class="step-header">
+                    <div class="step-name">${s.name} · ${s.badge}</div>
+                    <div class="step-type">${s.badge}</div>
+                </div>
+                <div class="method-box">
+                    <div class="section-title-small">📌 متد دقیق پاسخ‌دهی</div>
+                    <div style="white-space: pre-line;">${s.method}</div>
+                </div>
+                <div class="neuro-box">
+                    <div class="section-title-small">🧠 چرا این استپ نهادینه می‌شود؟ (علت عصبی)</div>
+                    <div>${s.neuro}</div>
+                </div>
+                <div class="questions-table">
+                    <div class="section-title-small" style="margin-bottom:1rem;">📋 ۲۰ پرسش تمرینی — هر روز ۵ عدد</div>
+                    ${s.questions.map((q, idx) => `
+                        <div class="q-row" data-qtext="${q.replace(/"/g, '&quot;')}" data-stepidx="${stepIdx}">
+                            <div class="q-number">${(idx+1).toString().padStart(2,'0')}</div>
+                            <div class="q-text">${q}</div>
+                            <button class="q-audio" data-read="${q.replace(/"/g, '&quot;')}">🔊</button>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+        // کلیک روی سوال
+        document.querySelectorAll('.q-row').forEach(row => {
+            row.addEventListener('click', (e) => {
+                if(e.target.classList.contains('q-audio')) return;
+                selectedQuestionText = row.dataset.qtext;
+                selectedStepIdx = parseInt(row.dataset.stepidx);
+                selectedDisplay.innerHTML = `✅ سوال انتخاب شد: "${selectedQuestionText.substring(0, 70)}..." — حالا ضبط کن و جواب بده`;
+                document.body.classList.remove('blur-active');
+                if(audioPlayer) audioPlayer.style.display = 'none';
+            });
+        });
+        // دکمه بلندگو
+        document.querySelectorAll('.q-audio').forEach(btn => {
+            btn.onclick = (e) => {
+                e.stopPropagation();
+                const toRead = btn.dataset.read;
+                const utterance = new SpeechSynthesisUtterance(toRead);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.85;
+                window.speechSynthesis.cancel();
+                window.speechSynthesis.speak(utterance);
+            };
+        });
+    }
+
+    // ضبط و پخش
+    async function startRecording() {
+        if(!selectedQuestionText) {
+            recordStatusSpan.innerHTML = '⚠️ ابتدا روی یک سوال کلیک کن';
+            return;
+        }
+        if(recordingActive) return;
+        document.body.classList.add('blur-active');
+        audioPieces = [];
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            recordedStream = stream;
+            mediaRecorderGlobal = new MediaRecorder(stream);
+            mediaRecorderGlobal.ondataavailable = (e) => { if(e.data.size > 0) audioPieces.push(e.data); };
+            mediaRecorderGlobal.onstop = () => {
+                const blob = new Blob(audioPieces, { type: 'audio/webm' });
+                const url = URL.createObjectURL(blob);
+                audioPlayer.src = url;
+                audioPlayer.style.display = 'block';
+                playRecordBtn.disabled = false;
+                recordStatusSpan.innerHTML = '✅ جواب تو ضبط شد. پخش کن و با جمله‌ای که گفتی مقایسه کن.';
+                if(recordedStream) recordedStream.getTracks().forEach(t => t.stop());
+                recordingActive = false;
+                startRecordBtn.disabled = false;
+                stopRecordBtn.disabled = true;
+                document.body.classList.remove('blur-active');
+            };
+            mediaRecorderGlobal.start();
+            recordingActive = true;
+            startRecordBtn.disabled = true;
+            stopRecordBtn.disabled = false;
+            recordStatusSpan.innerHTML = '🔴 در حال ضبط پاسخ تو ... (سوال مخفی شد)';
+        } catch(err) {
+            recordStatusSpan.innerHTML = '❌ اجازه دسترسی به میکروفون داده نشد';
+            document.body.classList.remove('blur-active');
+        }
+    }
+    function stopRecording() {
+        if(mediaRecorderGlobal && recordingActive && mediaRecorderGlobal.state !== 'inactive') mediaRecorderGlobal.stop();
+    }
+    function playRecording() {
+        if(audioPlayer.src) audioPlayer.play();
+    }
+    startRecordBtn.onclick = startRecording;
+    stopRecordBtn.onclick = stopRecording;
+    playRecordBtn.onclick = playRecording;
+
+    renderNav();
+    renderStepContent(0);
+</script>
+</body>
+</html>
