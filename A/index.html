@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Chunk lite </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-light: radial-gradient(circle at 20% 30%, #F0EDF7, #E5DFF0);
+            --card-light: rgba(255, 255, 255, 0.75);
+            --text-light: #2A2442;
+            --text-muted-light: #6C5F8A;
+            --border-light: rgba(138, 98, 255, 0.25);
+            --accent-light: #8A64FF;
+            --studied-bg: linear-gradient(135deg, #4CAF50, #2E7D32);
+        }
+
+        body.dark {
+            --bg-light: radial-gradient(circle at 20% 30%, #0E0B1A, #05030C);
+            --card-light: rgba(25, 20, 45, 0.7);
+            --text-light: #F2ECFF;
+            --text-muted-light: #C2B5E6;
+            --border-light: rgba(138, 98, 255, 0.4);
+            --accent-light: #B27CFF;
+            --studied-bg: linear-gradient(135deg, #2E7D32, #1B5E20);
+        }
+
+        body {
+            background: var(--bg-light);
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--text-light);
+            transition: all 0.2s;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .timer-section {
+            background: var(--card-light);
+            backdrop-filter: blur(20px);
+            border-bottom: 0.5px solid var(--border-light);
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .timer-display {
+            font-family: monospace;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-light), #4A3A7A);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .timer-controls {
+            display: flex;
+            gap: 0.6rem;
+        }
+        .timer-btn {
+            background: var(--accent-light);
+            border: none;
+            width: 2.2rem;
+            height: 2.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            color: white;
+        }
+        .timer-btn:disabled {
+            opacity: 0.5;
+        }
+        .timer-status {
+            font-size: 0.65rem;
+            color: var(--text-muted-light);
+            background: rgba(0,0,0,0.05);
+            padding: 0.2rem 0.6rem;
+            border-radius: 2rem;
+        }
+        .timer-message {
+            font-size: 0.7rem;
+            color: #ff6b6b;
+            background: rgba(255,107,107,0.15);
+            padding: 0.2rem 0.7rem;
+            border-radius: 2rem;
+            animation: pulse 0.5s;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.03);
+            backdrop-filter: blur(20px);
+            border-bottom: 0.5px solid var(--border-light);
+            padding: 1rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4A3A7A, #B27CFF);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .theme-btn {
+            background: rgba(0, 0, 0, 0.05);
+            border: 0.5px solid var(--border-light);
+            padding: 0.3rem 0.9rem;
+            border-radius: 2rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        .tabs-wrapper {
+            padding: 0.75rem 1rem 0;
+            background: rgba(0, 0, 0, 0.02);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 65px;
+            z-index: 9;
+        }
+        .tabs-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+        .step-tab {
+            background: rgba(0, 0, 0, 0.05);
+            border: 0.5px solid var(--border-light);
+            padding: 0.45rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        .step-tab.active {
+            background: var(--accent-light);
+            color: white;
+        }
+        .main-content {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        .benefit-text {
+            font-size: 0.7rem;
+            color: var(--accent-light);
+            background: rgba(0, 0, 0, 0.03);
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 2rem;
+            margin-bottom: 1rem;
+        }
+        .phrases-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+        .phrase-card {
+            background: var(--card-light);
+            backdrop-filter: blur(12px);
+            border-radius: 1.2rem;
+            padding: 0.8rem 1rem;
+            border: 0.5px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        /* رنگ سبز برای چانک‌هایی که خوندی - خودت دستی توی HTML اضافه کن */
+        .phrase-card.studied {
+            background: var(--studied-bg);
+            border: 1px solid #4CAF50;
+        }
+        .phrase-card.studied .phrase-eng,
+        .phrase-card.studied .phrase-fa {
+            color: white;
+        }
+        .phrase-card.studied .audio-icon {
+            color: white;
+        }
+        .phrase-info {
+            flex: 2;
+        }
+        .phrase-number {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            background: var(--accent-light);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        .phrase-eng {
+            font-weight: 700;
+            font-family: monospace;
+            font-size: 0.9rem;
+            direction: ltr;
+            text-align: left;
+        }
+        .phrase-fa {
+            font-size: 0.7rem;
+            color: var(--text-muted-light);
+            margin-top: 0.2rem;
+        }
+        .audio-icon {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: var(--accent-light);
+        }
+        .record-section {
+            background: var(--card-light);
+            backdrop-filter: blur(24px);
+            border-top: 0.5px solid var(--border-light);
+            padding: 1rem;
+            position: sticky;
+            bottom: 0;
+        }
+        .record-word {
+            font-weight: 600;
+            font-family: monospace;
+            font-size: 0.8rem;
+            background: rgba(0, 0, 0, 0.03);
+            padding: 0.2rem 0.6rem;
+            border-radius: 2rem;
+            transition: filter 0.2s;
+        }
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.6rem;
+            margin: 0.5rem 0;
+        }
+        .btn {
+            background: var(--accent-light);
+            border: none;
+            padding: 0.45rem 1rem;
+            border-radius: 2rem;
+            color: white;
+            cursor: pointer;
+            font-size: 0.7rem;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 0.5px solid var(--border-light);
+            color: var(--text-light);
+        }
+        .record-status {
+            font-size: 0.65rem;
+            color: var(--text-muted-light);
+            text-align: center;
+            margin: 0.3rem 0;
+        }
+        audio {
+            width: 100%;
+            margin-top: 0.3rem;
+            border-radius: 2rem;
+        }
+        .footer-note {
+            font-size: 0.6rem;
+            text-align: center;
+            color: var(--text-muted-light);
+            padding-top: 0.3rem;
+        }
+        
+        /* محو شدن همه چیز موقع ضبط - هم باکس‌ها هم متن پایین */
+        .blur-chunks .phrase-eng,
+        .blur-chunks .phrase-fa,
+        .blur-chunks .record-word {
+            filter: blur(5px);
+            user-select: none;
+        }
+        
+        @media (max-width: 550px) {
+            .timer-display { font-size: 1.4rem; }
+            .phrase-eng { font-size: 0.8rem; }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: var(--card-light);
+            backdrop-filter: blur(20px);
+            border-radius: 2rem;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .close-modal {
+            background: var(--accent-light);
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            color: white;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin: 1rem 0;
+        }
+        .day {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            background: rgba(0, 0, 0, 0.05);
+        }
+        .day.pending {
+            background: linear-gradient(145deg, #a855f7, #7c3aed) !important;
+            color: white;
+        }
+        .day.done {
+            background: linear-gradient(145deg, #00ff88, #00d4aa) !important;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+<div class="timer-section">
+    <div style="display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;">
+        <span>⏱️</span>
+        <div class="timer-display" id="timerDisplay">05:00</div>
+        <div class="timer-controls">
+            <button class="timer-btn" id="timerStartBtn">▶️</button>
+            <button class="timer-btn" id="timerPauseBtn" disabled>⏸️</button>
+            <button class="timer-btn" id="timerResetBtn">🔄</button>
+        </div>
+    </div>
+    <div id="timerStatusMsg" class="timer-status">⏳ آماده</div>
+</div>
+
+<!-- یادداشت زیر تایمر - دقیقاً چسبیده به تایمر -->
+<div style="background: var(--card-light); backdrop-filter: blur(20px); border-bottom: 0.5px solid var(--border-light); padding: 0.6rem 1rem; text-align: center;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; font-size: 0.7rem; color: var(--text-muted-light);">
+        <span>📌 هر روز <strong style="color: var(--accent-light);">۵ بار</strong>وقت بگیر</span>
+        <span>🧠 هر بار <strong style="color: var(--accent-light);">۲ چانک</strong> حفظ کن</span>
+        <span>⏱️ بین هر بار <strong style="color: var(--accent-light);">۳۰ دقیقه تا ۱ ساعت</strong> فاصله بذار</span>
+        <span>🔄 توی هر زمان: <strong style="color: var(--accent-light);">2 ± 3</strong>چانک یادگیری</span>
+    </div>
+</div>
+
+<div class="header">
+    <div style="display: flex; gap: 0.5rem;">
+        <button id="calendarBtn" class="theme-btn">📅 تقویم</button>
+        <button class="theme-btn" id="themeToggle">🌗 تغییر تم</button>
+    </div>
+    <div class="logo">
+        <img src=https://uploadkon.ir/uploads/5a9b23_26file-00000000ec0c71f48c35ec17ac138f5c.png alt="Chunk lite" style="height: 55px; width: auto; display: block;">
+    </div>
+</div>
+
+<div class="tabs-wrapper">
+    <div class="tabs-container" id="stepTabs"></div>
+</div>
+
+<div class="main-content" id="phrasesContainer"></div>
+
+<div class="record-section">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+        <span>🎤</span>
+        <span id="selectedPhrase" class="record-word">روی یک عبارت کلیک کن</span>
+    </div>
+    <div class="button-group">
+        <button id="startRecordBtn" class="btn">🎙 شروع ضبط</button>
+        <button id="stopRecordBtn" class="btn btn-outline" disabled>⏹ توقف</button>
+        <button id="playRecordBtn" class="btn btn-outline" disabled>🔊 پخش صدای من</button>
+    </div>
+    <div id="recordStatus" class="record-status"></div>
+    <audio id="playbackAudio" controls style="display:none;"></audio>
+    <div class="footer-note">💡 کلیک روی هر عبارت → ضبط (جملات مخفی می‌شن) → از حفظ بگو → مقایسه</div>
+</div>
+
+<div id="calendarModal" class="modal">
+    <div class="modal-content">
+        <h3>📅 برنامه ۳۰ روزه</h3>
+        <p style="font-size: 0.7rem;">وضعیت روزها توسط برنامه‌نویس دستی تنظیم می‌شود.</p>
+        <div class="grid">
+            <div class="day done">1</div><div class="day done">2</div><div class="day pending">3</div>
+            <div class="day pending">4</div><div class="day pending">5</div><div class="day pending">6</div>
+            <div class="day pending">7</div><div class="day pending">8</div><div class="day pending">9</div>
+            <div class="day pending">10</div><div class="day pending">11</div><div class="day pending">12</div>
+            <div class="day pending">13</div><div class="day pending">14</div><div class="day pending">15</div>
+            <div class="day pending">16</div><div class="day pending">17</div><div class="day pending">18</div>
+            <div class="day pending">19</div><div class="day pending">20</div><div class="day pending">21</div>
+            <div class="day pending">22</div><div class="day pending">23</div><div class="day pending">24</div>
+            <div class="day pending">25</div><div class="day pending">26</div><div class="day pending">27</div>
+            <div class="day pending">28</div><div class="day pending">29</div><div class="day pending">30</div>
+        </div>
+        <button id="closeModalBtn" class="close-modal">بستن</button>
+    </div>
+</div>
+
+<script>
+    // ======================= چانک‌ها =======================
+let stepsData = [
+        {
+            name: "Step 1 · Fast Reactions",
+            benefit: "واکنش‌های سریع و طبیعی",
+            phrases: [
+                { eng: "You're telling me!💜", fa: "خودم می‌دونم / دقیقاً" },
+                { eng: "Tell me about it💜", fa: "به من بگو / خودم می‌دونم" },
+                { eng: "I feel you💜", fa: "حس تو رو می‌فهمم" },
+                { eng: "That hits different💜", fa: "این یه جور دیگست" },
+                { eng: "Same here💜", fa: "من همینطور" },
+                { eng: "No way!💜", fa: "باور نمی‌کنم!" },
+                { eng: "For real?💜", fa: "جدی؟" },
+                { eng: "Exactly!💜", "fa": "دقیقاً!" },
+                { eng: "Totally💜", "fa": "کاملاً موافقم" },
+                { eng: "I know, right?💜", "fa": "می‌دونم، نه؟" },
+                { eng: "Right?!💜", "fa": "همینه دیگه؟!" },
+                { eng: "For real💜", "fa": "واقعاً / جدی" },
+                { eng: "No kidding💜", "fa": "نه شوخی" },
+                { eng: "Get out of here!💜", "fa": "بگذرید! (تعجب)" },
+                { eng: "You're joking💜", "fa": "داری شوخی می‌کنی" },
+                { eng: "Come on!💜", "fa": "یعنی چی؟! / بیا" },
+                { eng: "Oh, totally💜", "fa": "آه، کاملاً" },
+                { eng: "That's what I'm saying!💜", "fa": "این چیزیه که من می‌گم!" },
+                { eng: "100%", "fa": "صد در صد" },
+                { eng: "Precisely", "fa": "دقیقاً (کمی رسمی)" },
+                { eng: "You got it", "fa": "دقیقاً همینطوره" },
+                { eng: "That's it", "fa": "همینه" },
+                { eng: "I hear you", "fa": "درکت می‌کنم" },
+                { eng: "Poor thing", "fa": "بیچاره" },
+                { eng: "That's rough", "fa": "سخته / حق داری" },
+                { eng: "Oh, bless", "fa": "وای خدای من (مهربان)" },
+                { eng: "Nice one!", "fa": "آفرین!" },
+                { eng: "Way to go", "fa": "مرحبا" },
+                { eng: "There you go", "fa": "همینطور ادامه بده" },
+                { eng: "Attagirl / Attaboy", "fa": "آفرین دختر/پسر" },
+                { eng: "Beautiful!", "fa": "عالی / قشنگ" },
+                { eng: "Love it", "fa": "عاشقش شدم" },
+                { eng: "Wait, what?", "fa": "صبر کن، چی؟" },
+                { eng: "Come again?", "fa": "ببخشید، دوباره؟" },
+                { eng: "Sorry?", "fa": "معذرت؟" },
+                { eng: "Hmm", "fa": "هوم (فکر کنم)" },
+                { eng: "Well...", "fa": "خب..." },
+                { eng: "You know?", "fa": "می‌دونی؟" }
+            ]
+        },
+        {
+            name: "Step 2 · Natural Fillers",
+            benefit: "پرکننده‌های طبیعی مکالمه",
+            phrases: [
+                { eng: "Well💜", fa: "خب", usage: "شروع پاسخ", example: "Well, I’m not sure" },
+                { eng: "You know💜", fa: "می‌دونی", usage: "گرفتن توجه", example: "It was weird, you know?" },
+                { eng: "I mean💜", fa: "منظورم اینه", usage: "اصلاح جمله", example: "I mean, it’s okay" },
+                { eng: "Actually💜", fa: "در واقع", usage: "تاکید / تصحیح", example: "Actually, I disagree" },
+                { eng: "Basically💜", fa: "اساساً", usage: "ساده‌سازی", example: "Basically, it’s easy" },
+                { eng: "So💜", fa: "خب", usage: "شروع توضیح", example: "So, here’s the idea" },
+                { eng: "Like💜", fa: "یه جورایی", usage: "مکث طبیعی", example: "It was, like, amazing" },
+                { eng: "Kind of💜", fa: "یه جورایی", usage: "عدم قطعیت", example: "I’m kind of tired" },
+                { eng: "Sort of💜", fa: "تقریباً", usage: "نرم کردن", example: "It’s sort of strange" },
+                { eng: "Right💜", fa: "درسته؟", usage: "تایید گرفتن", example: "It’s good, right?" },
+                { eng: "Okay💜", fa: "باشه", usage: "ادامه مکالمه", example: "Okay, let’s start" },
+                { eng: "Umm💜", fa: "اممم", usage: "فکر کردن", example: "Umm… I don’t know" },
+                { eng: "Uh💜", fa: "اه", usage: "مکث کوتاه", example: "Uh… maybe later" },
+                { eng: "Let me think💜", fa: "بذار فکر کنم", usage: "زمان گرفتن", example: "Let me think…" },
+                { eng: "You see💜", fa: "ببین", usage: "توضیح", example: "You see, it’s hard" },
+                { eng: "To be honest💜", fa: "راستش", usage: "بیان نظر", example: "To be honest, I agree" },
+                { eng: "Honestly💜", fa: "واقعاً", usage: "تاکید", example: "Honestly, it’s great" },
+                { eng: "At the end of the day", fa: "در نهایت", usage: "جمع‌بندی", example: "At the end of the day, it works" },
+                { eng: "I guess", fa: "فکر کنم", usage: "عدم قطعیت", example: "I guess it’s fine" },
+                { eng: "I suppose", fa: "احتمالاً", usage: "رسمی‌تر", example: "I suppose you’re right" },
+                { eng: "Well then", fa: "خب پس", usage: "ادامه", example: "Well then, let’s go" },
+                { eng: "You know what I mean", fa: "متوجهی؟", usage: "تایید", example: "It’s confusing, you know what I mean?" },
+                { eng: "Believe me", fa: "باور کن", usage: "تاکید", example: "Believe me, it works" },
+                { eng: "As I said", fa: "همونطور که گفتم", usage: "ارجاع", example: "As I said, it’s easy" },
+                { eng: "Anyway", fa: "به هر حال", usage: "تغییر موضوع", example: "Anyway, let’s continue" },
+                { eng: "By the way", fa: "راستی", usage: "افزودن نکته", example: "By the way, call me" },
+                { eng: "In fact", fa: "در واقع", usage: "تاکید", example: "In fact, it’s better" },
+                { eng: "For example", fa: "مثلاً", usage: "مثال", example: "For example, try this" },
+                { eng: "Or something", fa: "یا همچین چیزی", usage: "مبهم کردن", example: "Let’s meet later or something" },
+                { eng: "And stuff", fa: "و این چیزا", usage: "غیررسمی", example: "We talked about work and stuff" },
+                { eng: "That kind of thing", fa: "از این جور چیزا", usage: "کلی‌گویی", example: "I like movies and that kind of thing" },
+                { eng: "If that makes sense", fa: "اگر منطقیه", usage: "تایید", example: "It’s hard, if that makes sense" },
+                { eng: "You know what", fa: "می‌دونی چی؟", usage: "شروع جدید", example: "You know what, let’s go" },
+                { eng: "The thing is", fa: "قضیه اینه", usage: "توضیح", example: "The thing is, I’m busy" },
+                { eng: "What I mean is", fa: "منظورم اینه", usage: "شفاف‌سازی", example: "What I mean is, it’s hard" },
+                { eng: "Let’s see", fa: "بذار ببینم", usage: "فکر کردن", example: "Let’s see… maybe" },
+                { eng: "I feel like", fa: "حس می‌کنم", usage: "نظر شخصی", example: "I feel like it’s wrong" },
+                { eng: "It seems like", fa: "به نظر میاد", usage: "برداشت", example: "It seems like rain" },
+                { eng: "More or less", fa: "کم و بیش", usage: "تقریبی", example: "It’s done, more or less" },
+                { eng: "At least", fa: "حداقل", usage: "محدود کردن", example: "At least we tried" }
+            ]
+        },
+        {
+            name: "Step 3 · Softening",
+            benefit: "نرم‌کننده‌های گفتار (مودب و طبیعی)",
+            phrases: [
+                { eng: "I think💜", fa: "فکر می‌کنم" },
+                { eng: "I guess💜", fa: "حدس می‌زنم" },
+                { eng: "Maybe💜", fa: "شاید" },
+                { eng: "I'm not sure💜", fa: "مطمئن نیستم" },
+                { eng: "It could be💜", fa: "می‌تواند باشد" },
+                { eng: "I feel like💜", fa: "حس می‌کنم" },
+                { eng: "Kind of💜", fa: "یک جورایی" },
+                { eng: "Sort of💜", fa: "نوعی" },
+                { eng: "A little bit💜", fa: "یک کمی" },
+                { eng: "Perhaps💜", fa: "شاید (کمی رسمی)" },
+                { eng: "I suppose💜", fa: "فکر می‌کنم / حدس می‌زنم" },
+                { eng: "It seems💜", fa: "به نظر می‌رسد" },
+                { eng: "Apparently💜", fa: "ظاهراً" },
+                { eng: "As far as I know💜", fa: "تا جایی که می‌دانم" },
+                { eng: "I could be wrong but💜", fa: "ممکن است اشتباه کنم اما" },
+                { eng: "If I'm not mistaken💜", fa: "اگر اشتباه نکنم" },
+                { eng: "Correct me if I'm wrong💜", fa: "اگر اشتباه می‌کنم بگو" },
+                { eng: "It might be💜", fa: "شاید باشد" },
+                { eng: "It may be", fa: "ممکن است باشد" },
+                { eng: "Possibly", fa: "احتمالاً" },
+                { eng: "Not necessarily", fa: "الزاماً اینطور نیست" },
+                { eng: "In a way", fa: "از یک نظر" },
+                { eng: "To be honest", fa: "راستش را بخواهی" },
+                { eng: "Honestly", fa: "راستش" },
+                { eng: "If you ask me", fa: "اگر نظر من را بخواهی" },
+                { eng: "I'd say", fa: "من می‌گویم" },
+                { eng: "I'd imagine", fa: "تصور می‌کنم" },
+                { eng: "I assume", fa: "فرض می‌کنم" },
+                { eng: "I take it", fa: "اینطور برداشت می‌کنم" },
+                { eng: "It sounds like", fa: "به نظر می‌رسد که" },
+                { eng: "It looks like", fa: "به نظر می‌آید که" },
+                { eng: "More or less", fa: "تقریباً / کم و بیش" },
+                { eng: "Pretty much", fa: "تقریباً" },
+                { eng: "A bit", fa: "یک کمی" },
+                { eng: "Just a little", fa: "فقط یه کم" },
+                { eng: "If that's okay", fa: "اگر اشکالی ندارد" },
+                { eng: "If you don't mind", fa: "اگر بدتان نیاید" },
+                { eng: "No problem if not", fa: "اگر نه اشکالی ندارد" },
+                { eng: "I was wondering", fa: "نمی‌دانستم / برام سوال بود" },
+                { eng: "Sorry to bother you but", fa: "ببخشید مزاحمت می‌شوم اما" },
+                { eng: "Just a thought", fa: "فقط یک فکر (نظر) بود" }
+            ]
+        },
+        {
+            name: "Step 4 · Ending",
+            benefit: "پایان دادن به مکالمه",
+            phrases: [
+                { eng: "Anyway...💜", fa: "به هر حال…" },
+                { eng: "I gotta run💜", fa: "باید برم" },
+                { eng: "Let's catch up soon💜", fa: "باید زودتر ببینمت" },
+                { eng: "Talk later💜", fa: "بعداً حرف می‌زنیم" },
+                { eng: "Take it easy💜", fa: "آروم باش / مراقب خودت باش" },
+                { eng: "It was nice talking to you💜", fa: "از صحبت با تو لذت بردم" },
+                { eng: "Well, I should get going💜", fa: "خب، بهتره برم" },
+                { eng: "I'd better let you go💜", fa: "بهتره بذارم بری" },
+                { eng: "Don't let me keep you💜", fa: "نذار مزاحمت بشم" },
+                { eng: "I'll let you get back to it💜", fa: "بذار برگردی به کارت" },
+                { eng: "It's been great chatting💜", fa: "صحبت کردن عالی بود" },
+                { eng: "Catch you later💜", fa: "بعداً می‌بینمت" },
+                { eng: "See you around💜", fa: "بعداً می‌بینمت (غیررسمی)" },
+                { eng: "Take care💜", fa: "مواظب خودت باش" },
+                { eng: "Have a good one💜", fa: "روز خوبی داشته باشی" },
+                { eng: "I'm off💜", fa: "رفتم / دارم می‌رم" },
+                { eng: "I gotta head out💜", fa: "باید برم بیرون" },
+                { eng: "Let's leave it there for now", fa: "بذار همینجا تمومش کنیم فعلاً" },
+                { eng: "We'll pick this up later", fa: "بعداً ادامه می‌دیم" },
+                { eng: "I won't take any more of your time", fa: "بیشتر وقتت رو نمی‌گیرم" },
+                { eng: "Thanks for your time", fa: "ممنون بابت وقتی که گذاشتی" },
+                { eng: "Great seeing you", fa: "خوشحالم دیدمت" },
+                { eng: "Good talking with you", fa: "خوب بود باهات حرف زدم" },
+                { eng: "Until next time", fa: "تا دفعه بعد" },
+                { eng: "So, I'll talk to you soon", fa: "پس به زودی باهات حرف می‌زنم" },
+                { eng: "I should probably go now", fa: "احتمالاً الان باید برم" },
+                { eng: "It's getting late", fa: "داره دیر می‌شه" },
+                { eng: "I don't want to keep you", fa: "نمی‌خوام تو رو معطل کنم" },
+                { eng: "Let's wrap this up", fa: "بیا تمومش کنیم" },
+                { eng: "I'll be in touch", fa: "باهات تماس می‌گیرم / در ارتباط می‌شم" },
+                { eng: "We'll talk again soon", fa: "به زودی دوباره حرف می‌زنیم" },
+                { eng: "Enjoy the rest of your day", fa: "بقیه روزت خوب باشه" },
+                { eng: "Have a good evening", fa: "عصر خوبی داشته باشی" },
+                { eng: "Nice seeing you, as always", fa: "مثل همیشه دیدن تو خوب بود" },
+                { eng: "I'll catch you on the flip side", fa: "بعداً می‌بینمت (عامیانه)" },
+                { eng: "Alright then...", fa: "بسیار خوب، پس…" },
+                { eng: "Right then, I'm off", fa: "بسیار، من رفتم" },
+                { eng: "Cheers for now", fa: "فعلاً درود (بریتیش)" },
+                { eng: "Let's call it a day", fa: "بذار تمومش کنیم برای امروز" },
+                { eng: "I'll leave you to it", fa: "بذار برم به کارت برسی" },
+                { eng: "Goodbye for now", fa: "فعلاً خداحافظ" }
+            ]
+        },
+        {
+            name: "Step 5 · Strong Emotions",
+            benefit: "ابراز احساسات قوی",
+            phrases: [
+                { eng: "I'm so over this💜", fa: "دیگه از این خسته شدم" },
+                { eng: "I can't even💜", fa: "حتی نمی‌تونم… (از شدت)" },
+                { eng: "I'm good💜", fa: "حالم خوبه / نیازی ندارم" },
+                { eng: "No hard feelings💜", fa: "کینه‌ای نیست" },
+                { eng: "My bad💜", fa: "تقصیر من بود" },
+                { eng: "That's insane💜", fa: "این دیوانگی است" },
+                { eng: "Are you kidding me?💜", fa: "داری با من شوخی می‌کنی؟" },
+                { eng: "I'm done💜", fa: "تموم کردم / بس است" },
+                { eng: "I've had it💜", fa: "دیگه طاقت ندارم" },
+                { eng: "That's the last straw💜", fa: "آخرین نی بود" },
+                { eng: "I'm so pumped💜", fa: "واقعاً هیجان‌زده‌ام" },
+                { eng: "I'm freaking out💜", fa: "دارم دیوونه می‌شم (از هیجان یا استرس)" },
+                { eng: "I lost it💜", fa: "دیگه از کوره در رفتم" },
+                { eng: "Don't get me started💜", fa: "واسش نذار (من رو به راه ننداز)" },
+                { eng: "I'm speechless💜", fa: "حرف ندارم / مات و مبهوت‌م" },
+                { eng: "That's wild💜", fa: "این دیوونگیه" },
+                { eng: "I'm so done with this", fa: "دیگه از این بسه" },
+                { eng: "You won't believe it", fa: "باور نمی‌کنی" },
+                { eng: "That hit me hard", fa: "این خیلی بهم ریخت" },
+                { eng: "I'm crushed", fa: "له شدم / نابود شدم" },
+                { eng: "I'm over the moon", fa: "از خوشحالی پر می‌زنم" },
+                { eng: "I'm sick of this", fa: "از این بدم میاد / خسته شدم" },
+                { eng: "That's ridiculous", fa: "این مسخره است" },
+                { eng: "Seriously?", fa: "جدی؟" },
+                { eng: "What a shame", fa: "چه حیف" },
+                { eng: "I'm devastated", fa: "واقعاً نابود شدم" },
+                { eng: "I'm thrilled", fa: "واقعاً ذوق دارم" },
+                { eng: "That's so unfair", fa: "این خیلی بی‌انصافی‌ست" },
+                { eng: "I can't stand it", fa: "نمی‌تونم تحمل کنم" },
+                { eng: "You're breaking my heart", fa: "داری دلم رو می‌شکنی" },
+                { eng: "I'm on top of the world", fa: "در اوج خوشحالی‌ام" },
+                { eng: "That's disgusting", fa: "این مشمئزکننده است" },
+                { eng: "I'm so relieved", fa: "واقعاً آسوده شدم" },
+                { eng: "Thank God", fa: "خدا رو شکر" },
+                { eng: "What a relief", fa: "چه آسودگی‌ای" },
+                { eng: "I'm losing my mind", fa: "داشتم عقلمو از دست می‌دم" },
+                { eng: "This is killing me", fa: "این داره منو می‌کشه" },
+                { eng: "I'm so embarrassed", fa: "خیلی خجالت می‌کشم" },
+                { eng: "That's awesome", fa: "این عالیه" },
+                { eng: "I'm so proud of you", fa: "به تو خیلی افتخار می‌کنم" }
+            ]
+        },
+        {
+            name: "Step 6 · Asking Questions",
+            benefit: "سوال پرسیدن طبیعی و روان",
+            phrases: [
+                { eng: "What do you mean?💜", fa: "منظورت چیه؟" },
+                { eng: "How come?💜", fa: "چطور شد؟ / چرا؟" },
+                { eng: "What's up?💜", fa: "چه خبر؟" },
+                { eng: "You know what I mean?💜", fa: "متوجه منظورم می‌شی؟" },
+                { eng: "Does that make sense?💜", fa: "منطقی به نظر می‌رسه؟" },
+                { eng: "What are you getting at?💜", fa: "به چه چیزی داری اشاره می‌کنی؟" },
+                { eng: "Am I making sense?💜", fa: "چیزی که می‌گم واضحه؟" },
+                { eng: "What's the catch?💜", fa: "گل‌و‌بلبلش کجاست؟" },
+                { eng: "Are you serious?💜", fa: "جدی می‌گی؟" },
+                { eng: "Since when?💜", fa: "از کی تا حالا؟" },
+                { eng: "What's that supposed to mean?💜", fa: "یعنی چه؟ (کمی تند)" },
+                { eng: "You think so?💜", fa: "تو اینطور فکر می‌کنی؟" },
+                { eng: "Why's that?💜", fa: "چرا اینطور؟" },
+                { eng: "How so?💜", fa: "چطور؟ / به چه علت؟" },
+                { eng: "Like what?💜", fa: "مثلاً چی؟" },
+                { eng: "Says who?💜", fa: "کی گفته؟" },
+                { eng: "Who knows?", fa: "کی می‌دونه؟" },
+                { eng: "What's the point?", fa: "هدف چیه؟" },
+                { eng: "Where were we?", fa: "کجا بودیم؟" },
+                { eng: "What were you saying?", fa: "چی می‌گفتی؟" },
+                { eng: "Sorry, what did you say?", fa: "ببخشید، چی گفتی؟" },
+                { eng: "Could you repeat that?", fa: "می‌شه دوباره بگی؟ (مودب)" },
+                { eng: "Are you following me?", fa: "داری با من همراه می‌شی؟" },
+                { eng: "You get it?", fa: "گرفتی؟" },
+                { eng: "Isn't it?", fa: "اینطور نیست؟" },
+                { eng: "Right?", fa: "درسته؟" },
+                { eng: "Don't you think?", fa: "نظرت نیست؟" },
+                { eng: "What else?", fa: "چیز دیگه‌ای؟" },
+                { eng: "Anything else?", fa: "چیز دیگه‌ای؟" },
+                { eng: "What's new?", fa: "چه خبرا؟" },
+                { eng: "How's it going?", fa: "چطور پیش می‌ره؟" },
+                { eng: "What's going on?", fa: "چه خبره؟" },
+                { eng: "You alright?", fa: "حالت خوبه؟" },
+                { eng: "Got a minute?", fa: "یک دقیقه وقت داری؟" },
+                { eng: "You busy?", fa: "سرت شلوغه؟" },
+                { eng: "What do you reckon?", fa: "تو چی فکر می‌کنی؟" },
+                { eng: "How about that?", fa: "نظرت در مورد اون چیه؟" },
+                { eng: "What's the deal?", fa: "قضیه چیه؟" },
+                { eng: "Why not?", fa: "چرا که نه؟" },
+                { eng: "What happened?", fa: "چی شد؟" }
+            ]
+        }
+    ];
+
+    let currentStep = 0;
+    let selectedPhraseEng = "";
+    let selectedPhraseFa = "";
+
+    // ======================= تایمر =======================
+    let timerInterval = null;
+    let timeLeftSeconds = 5 * 60;
+    let isTimerRunning = false;
+
+    const timerDisplay = document.getElementById('timerDisplay');
+    const timerStartBtn = document.getElementById('timerStartBtn');
+    const timerPauseBtn = document.getElementById('timerPauseBtn');
+    const timerResetBtn = document.getElementById('timerResetBtn');
+    const timerStatusMsg = document.getElementById('timerStatusMsg');
+
+    function updateTimerDisplay() {
+        const minutes = Math.floor(timeLeftSeconds / 60);
+        const seconds = timeLeftSeconds % 60;
+        timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    function playAlert() {
+        try {
+            const utterance = new SpeechSynthesisUtterance("آه");
+            utterance.lang = 'fa-IR';
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(utterance);
+        } catch(e) {}
+        timerStatusMsg.innerHTML = "⏰ زمان به پایان رسید!";
+        timerStatusMsg.classList.add('timer-message');
+        setTimeout(() => timerStatusMsg.classList.remove('timer-message'), 3000);
+        alert("⏰ زمان ۵ دقیقه به پایان رسید!");
+    }
+
+    function timerComplete() {
+        if (timerInterval) clearInterval(timerInterval);
+        isTimerRunning = false;
+        timerStartBtn.disabled = false;
+        timerPauseBtn.disabled = true;
+        playAlert();
+    }
+
+    function startTimer() {
+        if (timerInterval) clearInterval(timerInterval);
+        isTimerRunning = true;
+        timerStartBtn.disabled = true;
+        timerPauseBtn.disabled = false;
+        timerStatusMsg.innerHTML = "🔥 در حال تمرین...";
+        timerStatusMsg.classList.remove('timer-message');
+        timerInterval = setInterval(() => {
+            if (timeLeftSeconds <= 1) {
+                timeLeftSeconds = 0;
+                updateTimerDisplay();
+                timerComplete();
+            } else {
+                timeLeftSeconds--;
+                updateTimerDisplay();
+            }
+        }, 1000);
+    }
+
+    function pauseTimer() {
+        if (timerInterval) clearInterval(timerInterval);
+        isTimerRunning = false;
+        timerStartBtn.disabled = false;
+        timerPauseBtn.disabled = true;
+        timerStatusMsg.innerHTML = "⏸ متوقف شد";
+    }
+
+    function resetTimer() {
+        if (timerInterval) clearInterval(timerInterval);
+        isTimerRunning = false;
+        timeLeftSeconds = 5 * 60;
+        updateTimerDisplay();
+        timerStartBtn.disabled = false;
+        timerPauseBtn.disabled = true;
+        timerStatusMsg.innerHTML = "🔄 بازنشانی شد";
+        timerStatusMsg.classList.remove('timer-message');
+    }
+
+    timerStartBtn.onclick = startTimer;
+    timerPauseBtn.onclick = pauseTimer;
+    timerResetBtn.onclick = resetTimer;
+    updateTimerDisplay();
+
+    // ======================= مودال تقویم =======================
+    const modal = document.getElementById('calendarModal');
+    document.getElementById('calendarBtn').onclick = () => modal.style.display = 'flex';
+    document.getElementById('closeModalBtn').onclick = () => modal.style.display = 'none';
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
+
+    // ======================= ضبط صدا =======================
+    let mediaRecorder = null;
+    let audioChunks = [];
+    let isRecording = false;
+    let recordingStream = null;
+
+    function renderStepTabs() {
+        const container = document.getElementById("stepTabs");
+        container.innerHTML = stepsData.map((step, idx) => `
+            <button class="step-tab ${idx === currentStep ? 'active' : ''}" data-step="${idx}">${step.name}</button>
+        `).join('');
+        document.querySelectorAll('.step-tab').forEach(btn => {
+            btn.onclick = () => {
+                currentStep = parseInt(btn.dataset.step);
+                renderStepTabs();
+                renderPhrases();
+                selectedPhraseEng = "";
+                selectedPhraseFa = "";
+                document.getElementById('selectedPhrase').innerHTML = "روی یک عبارت کلیک کن";
+                document.getElementById('recordStatus').innerHTML = "";
+                document.body.classList.remove('blur-chunks');
+            };
+        });
+    }
+
+    function renderPhrases() {
+        const step = stepsData[currentStep];
+        const container = document.getElementById("phrasesContainer");
+        container.innerHTML = `
+            <div><div class="benefit-text">📌 ${step.benefit}</div></div>
+            <div class="phrases-grid">
+                ${step.phrases.map((p, idx) => `
+                    <div class="phrase-card" data-eng="${p.eng.replace(/"/g, '&quot;')}" data-fa="${p.fa.replace(/"/g, '&quot;')}">
+                        <div class="phrase-info">
+                            <div class="phrase-number">#${idx + 1}</div>
+                            <div class="phrase-eng">“${p.eng}”</div>
+                            <div class="phrase-fa">📖 ${p.fa}</div>
+                        </div>
+                        <button class="audio-icon" data-word="${p.eng.replace(/"/g, '&quot;')}">🔊</button>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        document.querySelectorAll('.phrase-card').forEach(card => {
+            card.onclick = (e) => {
+                if (e.target.classList.contains('audio-icon')) return;
+                selectedPhraseEng = card.dataset.eng;
+                selectedPhraseFa = card.dataset.fa;
+                document.getElementById('selectedPhrase').innerHTML = `${selectedPhraseEng} (${selectedPhraseFa})`;
+                document.getElementById('recordStatus').innerHTML = `✅ عبارت انتخاب شد. حالا می‌توانی ضبط کنی.`;
+            };
+        });
+        document.querySelectorAll('.audio-icon').forEach(btn => {
+            btn.onclick = (e) => {
+                e.stopPropagation();
+                const word = btn.dataset.word;
+                const utterance = new SpeechSynthesisUtterance(word);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.8;
+                window.speechSynthesis.cancel();
+                window.speechSynthesis.speak(utterance);
+            };
+        });
+    }
+
+    async function startRecording() {
+        if (!selectedPhraseEng) {
+            document.getElementById('recordStatus').innerHTML = '⚠️ ابتدا روی یک عبارت کلیک کن';
+            return;
+        }
+        if (isRecording) return;
+        
+        // محو کردن همه چیز - هم چانک‌ها هم متن پایین
+        document.body.classList.add('blur-chunks');
+        
+        audioChunks = [];
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            recordingStream = stream;
+            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) audioChunks.push(e.data); };
+            mediaRecorder.onstop = () => {
+                const blob = new Blob(audioChunks, { type: 'audio/webm' });
+                const url = URL.createObjectURL(blob);
+                const audio = document.getElementById('playbackAudio');
+                audio.src = url;
+                audio.style.display = 'block';
+                document.getElementById('playRecordBtn').disabled = false;
+                document.getElementById('recordStatus').innerHTML = '✅ ضبط شد. دکمه پخش را بزن و مقایسه کن.';
+                if (recordingStream) recordingStream.getTracks().forEach(t => t.stop());
+                isRecording = false;
+                document.getElementById('startRecordBtn').disabled = false;
+                document.getElementById('stopRecordBtn').disabled = true;
+                // برداشتن محو شدن
+                document.body.classList.remove('blur-chunks');
+            };
+            mediaRecorder.start();
+            isRecording = true;
+            document.getElementById('startRecordBtn').disabled = true;
+            document.getElementById('stopRecordBtn').disabled = false;
+            document.getElementById('recordStatus').innerHTML = '🔴 در حال ضبط... (جملات مخفی شدند، از حفظ بگو)';
+        } catch (err) {
+            document.getElementById('recordStatus').innerHTML = '❌ دسترسی به میکروفون داده نشد';
+            document.body.classList.remove('blur-chunks');
+        }
+    }
+
+    function stopRecording() {
+        if (mediaRecorder && isRecording && mediaRecorder.state !== 'inactive') {
+            mediaRecorder.stop();
+            document.body.classList.remove('blur-chunks');
+        }
+    }
+
+    function playRecording() {
+        const audio = document.getElementById('playbackAudio');
+        if (audio.src) audio.play();
+    }
+
+    document.getElementById('startRecordBtn').onclick = startRecording;
+    document.getElementById('stopRecordBtn').onclick = stopRecording;
+    document.getElementById('playRecordBtn').onclick = playRecording;
+    document.getElementById('themeToggle').onclick = () => document.body.classList.toggle('dark');
+
+    renderStepTabs();
+    renderPhrases();
+</script>
+</body>
+</html>
